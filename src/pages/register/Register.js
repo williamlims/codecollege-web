@@ -2,21 +2,15 @@ import * as React from 'react';
 import Container from 'react-bootstrap/Container';
 import NavBarLight from '../../components/navbarlight/NavBarLight';
 
-function Login() {
-    const style = {
-        position: "center",
-        align: "center",
-        width: "250px",
-        backgroundColor: "black"
-    };
+function Register() {
     return (
         <>
             <NavBarLight />
             <Container >
-                olá
+                Register
             </Container>
         </>
     );
 }
 
-export default Login;
+export default Register;

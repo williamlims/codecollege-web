@@ -1,15 +1,19 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Routes, Route } from 'react-router-dom';
-import Login from './pages/login';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from './pages/login/Login';
+import Register from './pages/register/Register';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Login />}>
-        <Route path="messages" element={<Login />} />
-        <Route path="tasks" element={<Login />} />
-      </Route>
-    </Routes>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<Login />} />
+        <Route path="register" element={<Register />} />
+        <Route path="*" element={<Login />} />
+        <Route path="*" element={<Login />} />
+      </Routes>
+    </BrowserRouter>
+
   );
 }
 

@@ -1,0 +1,3 @@
+window.env = {
+  "VARIAVELDEFINIR": "222222222222"
+};
