@@ -1,16 +1,16 @@
 import * as React from 'react';
 import Container from 'react-bootstrap/Container';
-import NavBarLight from '../../../components/navbarlight/NavBarLight';
+import NavBarLight from '../../../../components/navbarlight/NavBarLight';
 
-function Dashboard() {
+function DocumentsReport() {
     return (
         <>
             <NavBarLight />
             <Container >
-                Dashboard
+                DocumentsReport
             </Container>
         </>
     );
 }
 
-export default Dashboard;
+export default DocumentsReport;
