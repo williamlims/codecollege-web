@@ -7,7 +7,7 @@ import user from '../../assets/userMain.png';
 function NavMain(props) {
     return (
         <>
-        <Navbar expand="md" bg="light" style={{maxHeight:55}} >
+        <Navbar expand="md" as={Col} bg="light" style={{maxHeight:55}} >
             <Container>
                 <Navbar.Brand href="#">
                     <img src={logo} width="30" height="30" className="d-inline-block align-top" alt="Logo" />
@@ -21,9 +21,9 @@ function NavMain(props) {
                 </Navbar.Collapse>
             </Container>
         </Navbar>
-        <Navbar bg="dark" className='shadow-sm' style={{height:70}} expand="md">      
+        <Navbar bg="dark" as={Col} className='shadow-sm' style={{height:70}} expand="md">      
             <Container>
-                <Navbar.Text as={Col} className='h6 mt-1' style={{fontFamily:'Arial', color:'white'}}>
+                <Navbar.Text as={Col}  className='h6 mt-1' style={{fontFamily:'Arial', color:'white'}}>
                     Segunda-feira, 20 de fevereiro de 2023<br />
                     <span className='h5'>Olá, {props.nameUser}! Seja bem vindo novamente.</span>
                 </Navbar.Text>
