@@ -5,10 +5,11 @@ import { useParams } from "react-router-dom";
 
 function Confirmation() {
     let { id } = useParams();
+    id = (id*1) + 2;
     return (
         <>
             <NavBarLight />
-            <Container >
+            <Container className="mt-5 shadow" style={{  borderRadius: 10}}>
                 Confirmation: The id is = {id}
             </Container>
         </>

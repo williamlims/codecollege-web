@@ -5,8 +5,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import NavBarLight from '../../components/navbarlight/NavBarLight';
-import Nav from 'react-bootstrap/Nav';
-import { NavLink } from 'react-router-dom';
+import InputGroup from 'react-bootstrap/InputGroup'
+import { BsFillPersonFill, BsFillEyeSlashFill } from "react-icons/bs";
 
 function Register() {
     const styles = {
@@ -16,6 +16,11 @@ function Register() {
         },
         colorFieldData: {
             color:'gray'
+        },
+        textTop: {
+            fontFamily:'Arial',
+            fontSize: 20,
+            color: 'black'
         }
     };
 
@@ -25,41 +30,45 @@ function Register() {
             <Container className="mt-4 shadow" style={{ borderRadius: 10}}>
                 <Form>
                     < br/>
-                    <Row className="mb-3" style={styles.marginsFildes}>
-                        <Form.Text>Novo cadastro</Form.Text>
+                    <Row className="mb-4" style={styles.marginsFildes}>
+                        <Form.Text style={styles.textTop}>Novo Cadastro</Form.Text>
                     </Row>
 
                     <Row className="mb-4" style={styles.marginsFildes}>
-                        <Form.Group as={Col} controlId="nameUser">
-                            <Form.Control type="text" placeholder="Insira seu nome"></Form.Control>
-                        </Form.Group>
+                        <InputGroup as={Col} controlId="nameUser">
+                            <Form.Control type="text" placeholder="Insira seu nome"/>                         
+                            <InputGroup.Text id="nameOne"><BsFillPersonFill /></InputGroup.Text>        
+                        </InputGroup>
                     </Row>
 
                     <Row className="mb-4" style={styles.marginsFildes}>
-                        <Form.Group as={Col} controlId="surnameUser">
+                        <InputGroup as={Col} controlId="surnameUser">
                             <Form.Control type="text" placeholder="Insira seu sobrenome" />
-                        </Form.Group>
+                            <InputGroup.Text id="bnameTwo"><BsFillPersonFill /></InputGroup.Text> 
+                        </InputGroup>
                     </Row>
 
                     <Row className="mb-4" style={styles.marginsFildes}>
-                        <Form.Group as={Col} controlId="birthdayUser">
+                        <InputGroup as={Col} controlId="birthdayUser">
                             <Form.Control type="date" style={styles.colorFieldData} />
-                        </Form.Group>
+                        </InputGroup>
                     </Row>
 
                     <Row className="mb-4" style={styles.marginsFildes}>
-                        <Form.Group as={Col} controlId="surnameUser">
+                        <InputGroup as={Col} controlId="surnameUser">
                             <Form.Control type="password" placeholder="Senha" />
-                        </Form.Group>
-                        <Form.Group as={Col} controlId="surnameUser">
+                            <InputGroup.Text id="passOne"><BsFillEyeSlashFill /></InputGroup.Text>
+                        </InputGroup>
+                        <InputGroup as={Col} controlId="surnameUser">
                             <Form.Control type="password" placeholder="Repetir senha" />
-                        </Form.Group>
+                            <InputGroup.Text id="passTwo"><BsFillEyeSlashFill /></InputGroup.Text>
+                        </InputGroup>
                     </Row>
 
                     <Row className="mb-4" style={styles.marginsFildes}>
                         <Form.Group as={Col} controlId="btnSave">
-                            <Button variant="primary" type="submit">
-                                Cadastrar
+                            <Button variant="primary" as={Col} md lg sm={2} type="submit" >
+                                Salvar
                             </Button>
                         </Form.Group>
                     </Row>

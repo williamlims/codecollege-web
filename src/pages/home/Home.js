@@ -1,11 +1,11 @@
 import * as React from 'react';
 import Container from 'react-bootstrap/Container';
-import NavBarLight from '../../components/navbarlight/NavBarLight';
+import NavMain from '../../components/navMain/NavMain';
 
 function Home() {
     return (
         <>
-            <NavBarLight />
+            <NavMain nameUser="Marcos Luiz"/>
             <Container >
                 Home
             </Container>
