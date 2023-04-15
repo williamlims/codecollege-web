@@ -16,7 +16,7 @@ import { BsFillGearFill,
          BsFillBookFill,
          BsFileEarmarkPdfFill,
          BsFileEarmarkTextFill,
-         BsFillEaselFill
+         BsFillMortarboardFill
 } from "react-icons/bs";
 
 
@@ -46,7 +46,7 @@ function Home() {
                             <Nav.Link to="/home/courses" key="/home/courses" as={NavLink}>
                                 <Col className="w-100 p-2 shadow" variant="primary" as={Button} style={borderSizeStyle}>
                                     <div>
-                                        <p style={{fontSize:26}}>Cursos <BsFillEaselFill /></p>
+                                        <p style={{fontSize:26}}>Cursos <BsFillMortarboardFill /></p>
                                         <p style={{fontSize:18}}>Cursos completos disponibilizados no sistema</p>
                                     </div>
                                 </Col>

@@ -19,7 +19,7 @@ function Classes() {
     };
     return (
         <>
-            <NavMain nameUser="Marcos Luiz"/>
+            <NavMain nameUser="Marcos Luiz" messageUser="Nessa página você tem acesso às aulas livres."/>
             <BreadcrumbPath path={path.element}/>
             <TabInfo info="Aulas livres"/>
             <Container style={{height:800}}>

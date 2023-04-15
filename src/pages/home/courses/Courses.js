@@ -19,7 +19,7 @@ function Courses() {
     };
     return (
         <>
-            <NavMain nameUser="Marcos Luiz"/>
+            <NavMain nameUser="Marcos Luiz" messageUser="Cursos disponíveis na plataforma."/>
             <BreadcrumbPath path={path.element}/>
             <TabInfo info="Cursos"/>
             <Container style={{height:800}}>

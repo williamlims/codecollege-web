@@ -19,7 +19,7 @@ function Tutorials() {
     };
     return (
         <>
-            <NavMain nameUser="Marcos Luiz"/>
+            <NavMain nameUser="Marcos Luiz" messageUser="Explore os tutoriais disponíveis."/>
             <BreadcrumbPath path={path.element}/>
             <TabInfo info="Tutoriais"/>
             <Container style={{height:800}}>
