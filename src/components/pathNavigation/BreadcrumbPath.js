@@ -3,7 +3,7 @@ import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
 function BreadcrumbPath(props) {
   return (
-    <Container className='shadow-sm mt-1' style={{height:30}}>
+    <Container className='shadow-sm mt-1 bg-light' style={{height:30}}>
         <Breadcrumb>
             {props.path}
         </Breadcrumb>
