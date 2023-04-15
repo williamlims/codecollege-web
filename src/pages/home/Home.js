@@ -37,7 +37,7 @@ function Home() {
 
     return (
         <>
-            <NavMain nameUser="Marcos Luiz"/>
+            <NavMain nameUser="Marcos Luiz" messageUser="Seja bem-vindo ao menu principal."/>
             <BreadcrumbPath path={path.element}/>
             <main class="flex-shrink-0">
                 <Container className='mb-5'>
