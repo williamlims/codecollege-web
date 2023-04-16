@@ -22,9 +22,11 @@ function Performance() {
             <NavMain nameUser="Marcos Luiz" messageUser="Verifique o seu desempenho na plataforma."/>
             <BreadcrumbPath path={path.element}/>
             <TabInfo info="Desempenho"/>
-            <Container style={{height:800}}>
-                Desempenho
-            </Container>
+            <main class="flex-shrink-0">
+                <Container className='mb-5 mt-2 bg-light shadow' style={{height:600}}>
+                    Desempenho
+                </Container>
+            </main>
             <Footer />
         </>
     );
