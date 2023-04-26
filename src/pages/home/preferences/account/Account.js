@@ -19,7 +19,23 @@ function Account() {
                 <Breadcrumb.Item active>Conta</Breadcrumb.Item>
             </>
         )
-    }
+    };
+    const styles = {
+        textTop: {
+            fontFamily:'Arial',
+            fontSize: 20,
+            color: 'black'
+        },
+        marginsFildes: {
+            marginLeft:15, 
+            marginRight:15
+        },
+        textoDados: {
+            fontFamily:'Arial',
+            fontSize: 16,
+            color: 'black'
+        }
+    };
     return (
         <>
             <NavMain nameUser="Marcos Luiz" messageUser="Efetue alterações em sua conta."/>
@@ -27,7 +43,20 @@ function Account() {
             <TabInfo info="Conta"/>
             <main class="flex-shrink-0">
                 <Container className='mb-5 mt-2 bg-light shadow' style={{height:600}}>
-                    Account
+                    <br />
+                    <Row className="mb-4" style={styles.marginsFildes}>
+                        <div style={styles.textTop}>Dados</div>
+                    </Row>
+                    <Row className="mb-4" style={styles.marginsFildes}>
+                        <div style={styles.textoDados}>
+                            Dados do usuário aqui ....                        
+                        </div>
+                    </Row>
+                    <Row className="mb-4" style={styles.marginsFildes}>
+                        <Button variant="danger" style={{marginLeft:10}} as={Col} md={2} lg={2} sm={2} type="submit" >
+                            Excluir conta
+                        </Button>
+                    </Row>
                 </Container>
             </main>
             <Footer />

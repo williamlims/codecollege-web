@@ -67,7 +67,7 @@ function Register() {
 
                     <Row className="mb-4" style={styles.marginsFildes}>
                         <Form.Group as={Col} controlId="btnSave">
-                            <Button variant="primary" as={Col} md lg sm={2} type="submit" >
+                            <Button variant="primary" as={Col} md={2} lg={2} sm={2} type="submit" >
                                 Salvar
                             </Button>
                         </Form.Group>
