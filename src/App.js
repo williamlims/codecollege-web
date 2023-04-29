@@ -8,6 +8,8 @@ import RecoverPassword from './pages/recover/RecoverPassword';
 import Confirmation from './pages/confirmation/Confirmation';
 import Home from './pages/home/Home';
 import Courses from './pages/home/courses/Courses';
+import Course from './pages/home/courses/course/Course';
+import Class from './pages/home/courses/course/class/Class';
 import Tutorials from './pages/home/tutorials/Tutorials';
 import Classes from './pages/home/classes/Classes';
 import Library from './pages/home/library/Library';
@@ -30,6 +32,8 @@ function App() {
           <Route path="confirmation/:id" element={<Confirmation />} />
           <Route path="home" element={<Home />} />
           <Route path="home/courses" element={<Courses />} />
+          <Route path="home/courses/:id" element={<Course />} />
+          <Route path="home/courses/:id/class/:id" element={<Class />} />
           <Route path="home/tutorials" element={<Tutorials />} />
           <Route path="home/classes" element={<Classes />} />
           <Route path="home/library" element={<Library />} />
