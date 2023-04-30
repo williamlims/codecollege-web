@@ -22,24 +22,27 @@ function Course() {
             </>
         )
     };
+    const aula = new Array([]);
+    aula[0].push(5);
     const aulas = [
-        {
-                parte1: (<Nav.Link to="/home/courses/5/class/1" key="/home/courses/5/class/1" as={NavLink}>Aula 1</Nav.Link>),
-                parte2: (<Nav.Link to="/home/courses/5/class/1" key="/home/courses/5/class/1" as={NavLink}>Aula 2</Nav.Link>),
-                parte3: (<Nav.Link to="/home/courses/5/class/1" key="/home/courses/5/class/1" as={NavLink}>Aula 3</Nav.Link>)
-        },   
+        [
+            (<Nav.Link to="/home/courses/5/class/1" key="/home/courses/5/class/1" as={NavLink}>Aula 1</Nav.Link>),
+            (<Nav.Link to="/home/courses/5/class/1" key="/home/courses/5/class/1" as={NavLink}>Aula 2</Nav.Link>),
+            (<Nav.Link to="/home/courses/5/class/1" key="/home/courses/5/class/1" as={NavLink}>Aula 3</Nav.Link>)
+        ],   
     ];
     return (
         <>
-            <NavMain nameUser="Marcos Luiz" messageUser="Cursos disponíveis na plataforma."/>
+            <NavMain nameUser="Marcos Luiz" messageUser="Aqui você encontra o conteúdo do curso."/>
             <BreadcrumbPath path={path.element}/>
             <TabInfo info="Curso"/>
             <Container style={{height:600}} className='shadow-sm overflow-auto'>
                 <Row className='mt-2 p-2'>
                     <Col sm={12} xs={12} md={12} lg={12} xl={12} >
-                        {aulas[0]["parte1"]}
-                        {aulas[0]["parte2"]}
-                        {aulas[0]["parte3"]}
+                        {aulas[0][0]}
+                        {aulas[0][1]}
+                        {aulas[0][2]}
+                        {aula[0][0]}
                     </Col>
                 </Row>
             </Container>

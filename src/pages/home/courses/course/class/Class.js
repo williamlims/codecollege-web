@@ -12,6 +12,7 @@ import TabInfo from '../../../../../components/tab/TabInfo';
 import user from '../../../../../assets/userMain.png';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
+import ReactPlayer from 'react-player'
 
 function Class() {
     let navigate = useNavigate();
@@ -25,16 +26,31 @@ function Class() {
             </>
         )
     };
+    const style = {
+        playerWrapper: {
+            position: 'relative',
+            paddingTop: '56.25%',
+        },
+        reactPlayer: {
+            position: 'absolute',
+            top: 0,
+            left: 0,
+        }
+    };
     
     return (
         <>
-            <NavMain nameUser="Marcos Luiz" messageUser="Cursos disponíveis na plataforma."/>
+            <NavMain nameUser="Marcos Luiz" messageUser="Assista a aula até ao final para computar no sistema."/>
             <BreadcrumbPath path={path.element}/>
             <TabInfo info="Curso"/>
             <Container style={{height:600}} className='shadow-sm overflow-auto'>
                 <Row className='mt-2 p-2'>
-                    <Col sm={12} xs={12} md={12} lg={12} xl={12} className='d-flex align-items-center'>
-                       
+                    <Col sm={12} xs={12} md={12} lg={12} xl={12} style={{height: '500px'}} className='d-flex align-items-center'>
+                        <ReactPlayer
+                            url='https://www.youtube.com/watch?v=ysz5S6PUM-U'
+                            width='100%'
+                            height='100%'
+                        />
                     </Col>
                 </Row>
             </Container>

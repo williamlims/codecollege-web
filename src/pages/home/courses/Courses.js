@@ -26,11 +26,11 @@ function Courses() {
             <NavMain nameUser="Marcos Luiz" messageUser="Cursos disponíveis na plataforma."/>
             <BreadcrumbPath path={path.element}/>
             <TabInfo info="Cursos"/>
-            <Container style={{height:600}} className='overflow-auto'>
-                <Row className='shadow mt-2 p-2'>
+            <Container style={{height:600}} className='shadow-sm overflow-auto'>
+                <Row className='shadow-sm mt-2 p-2'>
                     <Col sm={3} xs={2} md={2} lg={2} xl={1} className='d-flex align-items-center'>
                         <img src={user} width="80" height="80" 
-                                style={{borderBlockColor:'black'}} className=" shadow d-inline-block align-top" alt="pho" />
+                                style={{borderBlockColor:'black'}} className="shadow-sm d-inline-block align-top" alt="pho" />
                     </Col>
                     <Col sm={5} xs={12} md={6} lg={6} xl={6} className='text-break m-2 p-1'>
                         <span style={{fontFamily:'Arial Black', fontSize: 16}}>Nome Curso</span> < br/> 

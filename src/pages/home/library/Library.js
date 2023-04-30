@@ -20,7 +20,7 @@ function Library() {
                 <Breadcrumb.Item active>Biblioteca</Breadcrumb.Item>
             </>
         )
-    }
+    };
 
     const documento = () => {
         return (
@@ -35,7 +35,7 @@ function Library() {
                 </Row>
             </>
         )
-    }
+    };
     return (
         <>
             <NavMain nameUser="Marcos Luiz" messageUser="Aqui você encontra livros e documentos disponíveis no sistema."/>
