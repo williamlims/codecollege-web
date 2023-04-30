@@ -38,7 +38,7 @@ function Classes() {
                         <span style={{fontFamily:'Arial', fontSize: 14}}>fdadfb dbdbdhrehe hrheherhe rhreherhrehe herheherher hehr eherhr eherh shdf hdddgf gsdgf dsgfsdgd sfgsd gfdgd fsg khj jh gjhf gdf gd dfg dfdfd fdfdf dfdfd </span>
                     </Col>
                     <Col sm={3} xs={4} md={4} lg={3} xl={3} className='m-2 p-1 d-flex align-items-center'>
-                        <Button as={NavLink} to="/home/courses/5" variant="primary">
+                        <Button as={NavLink} to="/home/classes/5" variant="primary">
                             Assistir aula
                         </Button>
                     </Col>

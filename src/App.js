@@ -12,6 +12,7 @@ import Course from './pages/home/courses/course/Course';
 import Class from './pages/home/courses/course/class/Class';
 import Tutorials from './pages/home/tutorials/Tutorials';
 import Classes from './pages/home/classes/Classes';
+import ClassFree from './pages/home/classes/classFree/ClassFree';
 import Library from './pages/home/library/Library';
 import Certificates from './pages/home/certificates/Certificates';
 import Performance from './pages/home/performance/Performance';
@@ -19,6 +20,8 @@ import Preferences from './pages/home/preferences/Preferences';
 import Account from './pages/home/preferences/account/Account';
 import Profile from './pages/home/preferences/profile/Profile';
 import Admin from './pages/admin/Admin';
+import AdminRoot from './components/root/AdminRoot';
+import Dashboard from './pages/admin/dashboard/Dashboard';
 
 function App() {
   return (
@@ -36,6 +39,7 @@ function App() {
           <Route path="home/courses/:id/class/:id" element={<Class />} />
           <Route path="home/tutorials" element={<Tutorials />} />
           <Route path="home/classes" element={<Classes />} />
+          <Route path="home/classes/:id" element={<ClassFree />} />
           <Route path="home/library" element={<Library />} />
           <Route path="home/certificates" element={<Certificates />} />
           <Route path="home/performance" element={<Performance />} />
@@ -44,8 +48,9 @@ function App() {
           <Route path="home/preferences/profile" element={<Profile />} />
         </Route>
         <Route path="admin" element={<Admin />} />
-        <Route path="admin/home" element={<Root />}>
-
+        <Route path="admin/home" element={<Navigate to="dashboard" />} />
+        <Route path="admin/home" element={<AdminRoot />}>
+          <Route index path="dashboard" element={<Dashboard />} />
         </Route>
       </Routes>
     </BrowserRouter>
