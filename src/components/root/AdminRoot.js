@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Sidebar, Menu, SubMenu, MenuItem, useProSidebar } from 'react-pro-sidebar';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 import Navbar from 'react-bootstrap/Navbar';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
-import { NavLink, Link  } from 'react-router-dom';
+import { Link  } from 'react-router-dom';
 import { BsFillPersonFill, 
          BsFillBarChartFill,
-         BsFillPlayBtnFill, 
+         BsEaselFill, 
          BsFillJournalBookmarkFill,
          BsCaretRightSquare,
          BsJournals,
@@ -20,8 +20,9 @@ import { CSSTransition, SwitchTransition } from "react-transition-group";
 import { Outlet, useLocation }from "react-router-dom";
 import "../../styles/style.css";
 
-function AdminRoot() {
+function AdminRoot(props) {
     const location = useLocation();
+    const [title, setTitle] = useState("");
     const { nodeRef } = location.pathname;
     const { toggleSidebar, broken } = useProSidebar();
     const style = {
@@ -34,8 +35,8 @@ function AdminRoot() {
             }
         },
         subMenu:{
-            backgroundColor: '#D9EDFF',
-            color: '#4E555C'
+            backgroundColor: '#474747',
+            color: '#FFFFFF'
         }
     }
     return (
@@ -48,38 +49,38 @@ function AdminRoot() {
                 </div>
                 <Menu>
                     <div style={{marginLeft:20}}>Administrativo</div> 
-                    <MenuItem icon={<BsFillBarChartFill />} component={<Link to="/admin/home/dashboard" />}>DASHBOARD</MenuItem>
+                    <MenuItem icon={<BsFillBarChartFill />} onClick={() => setTitle("Dashboard")} component={<Link to="/admin/home/dashboard" />}>DASHBOARD</MenuItem>
                     <SubMenu defaultOpen icon={<BsFillPersonFill />} rootStyles={style.menu} label="Usuário">
-                        <MenuItem rootStyles={style.subMenu} component={<Link to="/admin/home/users" />}> Usuários </MenuItem>
-                        <MenuItem rootStyles={style.subMenu} component={<Link to="/admin/home/users/register" />}> Cadastro </MenuItem>
+                        <MenuItem rootStyles={style.subMenu} onClick={() => setTitle("Usuários")} component={<Link to="/admin/home/users" />}> Usuários </MenuItem>
+                        <MenuItem rootStyles={style.subMenu} onClick={() => setTitle("Novo Usuário")} component={<Link to="/admin/home/users/register" />}> Cadastro </MenuItem>
                     </SubMenu>
-                    <SubMenu icon={<BsFillPlayBtnFill />} label="Curso">
-                        <MenuItem component={<Link to="/admin/home/courses" />}> Cursos </MenuItem>
-                        <MenuItem component={<Link to="/admin/home/courses/register" />}> Criar Curso </MenuItem>
-                        <MenuItem component={<Link to="/admin/home/courses/register/class" />}> Criar Aula </MenuItem>
+                    <SubMenu icon={<BsEaselFill />} label="Curso">
+                        <MenuItem rootStyles={style.subMenu} onClick={() => setTitle("Cursos")} component={<Link to="/admin/home/courses" />}> Cursos </MenuItem>
+                        <MenuItem rootStyles={style.subMenu} onClick={() => setTitle("Novo Curso")} component={<Link to="/admin/home/courses/register" />}> Criar Curso </MenuItem>
+                        <MenuItem rootStyles={style.subMenu} onClick={() => setTitle("Nova Aula")} component={<Link to="/admin/home/courses/register/class" />}> Criar Aula </MenuItem>
                     </SubMenu>
                     <SubMenu icon={<BsFillJournalBookmarkFill />} label="Tutorial">
-                        <MenuItem component={<Link to="/admin/home/tutorials" />}> Tutoriais </MenuItem>
-                        <MenuItem component={<Link to="/admin/home/tutorials/register" />}> Criar Tutorial </MenuItem>
+                        <MenuItem rootStyles={style.subMenu} onClick={() => setTitle("Tutoriais")} component={<Link to="/admin/home/tutorials" />}> Tutoriais </MenuItem>
+                        <MenuItem rootStyles={style.subMenu} onClick={() => setTitle("Novo Tutorial")} component={<Link to="/admin/home/tutorials/register" />}> Criar Tutorial </MenuItem>
                     </SubMenu>
                     <SubMenu icon={<BsCaretRightSquare />} label="Aula Livre">
-                        <MenuItem component={<Link to="/admin/home/classes" />}> Lista de Aulas </MenuItem>
-                        <MenuItem component={<Link to="/admin/home/classes/register" />}> Criar Aula Livre </MenuItem>
+                        <MenuItem rootStyles={style.subMenu} onClick={() => setTitle("Aulas")} component={<Link to="/admin/home/classes" />}> Lista de Aulas </MenuItem>
+                        <MenuItem rootStyles={style.subMenu} onClick={() => setTitle("Nova Aula")} component={<Link to="/admin/home/classes/register" />}> Criar Aula Livre </MenuItem>
                     </SubMenu>
                     <SubMenu icon={<BsJournals />} label="Biblioteca">
-                        <MenuItem component={<Link to="/admin/home/registers" />}> Registros </MenuItem>
-                        <MenuItem component={<Link to="/admin/home/registers/register" />}> Criar Registro </MenuItem>
+                        <MenuItem rootStyles={style.subMenu} onClick={() => setTitle("Documentos")} component={<Link to="/admin/home/registers" />}> Registros </MenuItem>
+                        <MenuItem rootStyles={style.subMenu} onClick={() => setTitle("Novo Documento")} component={<Link to="/admin/home/registers/register" />}> Criar Registro </MenuItem>
                     </SubMenu>
                     <SubMenu icon={<BsPeopleFill />} label="Grupo">
-                        <MenuItem component={<Link to="/admin/home/groups" />}> Grupos </MenuItem>
-                        <MenuItem component={<Link to="/admin/home/groups/register" />}> Novo Grupo </MenuItem>
+                        <MenuItem rootStyles={style.subMenu} onClick={() => setTitle("Grupos")} component={<Link to="/admin/home/groups" />}> Grupos </MenuItem>
+                        <MenuItem rootStyles={style.subMenu} onClick={() => setTitle("Novo Grupo")} component={<Link to="/admin/home/groups/register" />}> Novo Grupo </MenuItem>
                     </SubMenu>
                     <SubMenu icon={<BsFiletypePdf />} label="Relatório">
-                        <MenuItem component={<Link to="/admin/home/reports/users" />}> Usuários </MenuItem>
-                        <MenuItem component={<Link to="/admin/home/reports/courses" />}> Cursos </MenuItem>
-                        <MenuItem component={<Link to="/admin/home/reports/classes" />}> Aulas </MenuItem>
-                        <MenuItem component={<Link to="/admin/home/reports/documents" />}> Documentos </MenuItem>
-                        <MenuItem component={<Link to="/admin/home/reports/groups" />}> Grupos </MenuItem>
+                        <MenuItem rootStyles={style.subMenu} component={<Link to="/admin/home/reports/users" />}> Usuários </MenuItem>
+                        <MenuItem rootStyles={style.subMenu} component={<Link to="/admin/home/reports/courses" />}> Cursos </MenuItem>
+                        <MenuItem rootStyles={style.subMenu} component={<Link to="/admin/home/reports/classes" />}> Aulas </MenuItem>
+                        <MenuItem rootStyles={style.subMenu} component={<Link to="/admin/home/reports/documents" />}> Documentos </MenuItem>
+                        <MenuItem rootStyles={style.subMenu} component={<Link to="/admin/home/reports/groups" />}> Grupos </MenuItem>
                     </SubMenu>
                 </Menu>
             </Sidebar>
@@ -92,10 +93,17 @@ function AdminRoot() {
                     </Button>
                     )}
                 </div>
-                <Navbar bg="dark" style={{height: '60px', backgroundColor: 'gray', margin: 6  }}>
-                    <Nav style={{marginLeft: 20, color: 'white'}}>
-                    Teste
-                    </Nav>
+                <Navbar style={{backgroundColor: '#F2F2F2', margin: 6}}>
+                    
+                    <Container>
+                        <Navbar.Brand>{title}</Navbar.Brand>
+                        <Navbar.Toggle />
+                        <Navbar.Collapse className="justify-content-end">
+                        <Navbar.Text>
+                            Logado como: <a href="#">Mark Otto</a>
+                        </Navbar.Text>
+                        </Navbar.Collapse>
+                    </Container>
                 </Navbar>
                 <Container>
                     <SwitchTransition>
