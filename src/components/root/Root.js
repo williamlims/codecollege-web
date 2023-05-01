@@ -7,7 +7,7 @@ function Root() {
     const { nodeRef } = location.pathname;
     return (
         <SwitchTransition>
-            <CSSTransition nodeRef={nodeRef} key={location.pathname}  timeout={600} classNames="page" unmountOnExit>
+            <CSSTransition nodeRef={nodeRef} key={location.pathname} timeout={600} classNames="page" unmountOnExit>
                 <div className="page">
                     {<Outlet />}
                 </div>
