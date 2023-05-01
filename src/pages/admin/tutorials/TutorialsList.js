@@ -2,7 +2,7 @@ import * as React from 'react';
 import Container from 'react-bootstrap/Container';
 import NavBarLight from '../../../components/navbarlight/NavBarLight';
 
-function Tutorials() {
+function TutorialsList() {
     return (
         <>
             <NavBarLight />
@@ -13,4 +13,4 @@ function Tutorials() {
     );
 }
 
-export default Tutorials;
+export default TutorialsList;

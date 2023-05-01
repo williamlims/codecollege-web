@@ -22,6 +22,24 @@ import Profile from './pages/home/preferences/profile/Profile';
 import Admin from './pages/admin/Admin';
 import AdminRoot from './components/root/AdminRoot';
 import Dashboard from './pages/admin/dashboard/Dashboard';
+import Users from './pages/admin/users/Users';
+import UserRegister from './pages/admin/users/register/UserRegister';
+import CoursesList from './pages/admin/courses/CoursesList';
+import NewCourse from './pages/admin/courses/newcourse/NewCourse';
+import NewClass from './pages/admin/courses/newclass/NewClass';
+import TutorialsList from './pages/admin/tutorials/TutorialsList';
+import NewTutorial from './pages/admin/tutorials/newtutorial/NewTutorial';
+import FreeClasses from './pages/admin/freeclasses/FreeClasses';
+import NewFreeClass from './pages/admin/freeclasses/newfreeclass/NewFreeClass';
+import Registers from './pages/admin/library/Registers';
+import NewRegister from './pages/admin/library/newregister/NewRegister';
+import Groups from './pages/admin/groups/Groups';
+import NewGroup from './pages/admin/groups/newgroup/NewGroup';
+import UsersReport from './pages/admin/reports/users/UsersReport';
+import CoursesReport from './pages/admin/reports/courses/CoursesReport';
+import ClassesReport from './pages/admin/reports/classes/ClassesReport';
+import DocumentsReport from './pages/admin/reports/documents/DocumentsReport';
+import GroupsReport from './pages/admin/reports/groups/GroupsReport';
 
 function App() {
   return (
@@ -51,6 +69,26 @@ function App() {
         <Route path="admin/home" element={<Navigate to="dashboard" />} />
         <Route path="admin/home" element={<AdminRoot />}>
           <Route index path="dashboard" element={<Dashboard />} />
+          <Route index path="users" element={<Users />} />
+          <Route index path="users/register" element={<UserRegister />} />
+          <Route index path="courses" element={<CoursesList />} />
+          <Route index path="courses/register" element={<NewCourse />} />
+          <Route index path="courses/register/class" element={<NewClass />} />
+          <Route index path="tutorials" element={<TutorialsList />} />
+          <Route index path="tutorials/register" element={<NewTutorial />} />
+          <Route index path="classes" element={<FreeClasses />} />
+          <Route index path="classes/register" element={<NewFreeClass />} />
+          <Route index path="registers" element={<Registers />} />
+          <Route index path="registers/register" element={<NewRegister />} />
+          <Route index path="groups" element={<Groups />} />
+          <Route index path="groups/register" element={<NewGroup />} />
+          <Route index path="groups" element={<Groups />} />
+          <Route index path="groups/register" element={<NewGroup />} />
+          <Route index path="reports/users" element={<UsersReport />} />
+          <Route index path="reports/courses" element={<CoursesReport />} />
+          <Route index path="reports/classes" element={<ClassesReport />} />
+          <Route index path="reports/documents" element={<DocumentsReport />} />
+          <Route index path="reports/groups" element={<GroupsReport />} />
         </Route>
       </Routes>
     </BrowserRouter>
