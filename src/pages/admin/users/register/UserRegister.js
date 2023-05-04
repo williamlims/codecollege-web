@@ -125,7 +125,7 @@ function UserRegister() {
 
     return (
         <>
-            <Container>
+            <Container fluid>
                 <Modal
                     size="sm"
                     show={cmShow}

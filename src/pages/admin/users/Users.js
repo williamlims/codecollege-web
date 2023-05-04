@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 function Users() {
     return (
         <>
-            <Container >
+            <Container fluid>
                 Users
             </Container>
         </>

@@ -20,7 +20,7 @@ function Dashboard() {
     return (
         <>
             <NavBarLight />
-            <Container >
+            <Container fluid>
                 Dashboard
                 <div>{getData().data}</div>
             </Container>

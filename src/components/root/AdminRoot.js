@@ -3,8 +3,8 @@ import { Sidebar, Menu, SubMenu, MenuItem, useProSidebar } from 'react-pro-sideb
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Navbar from 'react-bootstrap/Navbar';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown';
 import Nav from 'react-bootstrap/Nav';
 import { Link  } from 'react-router-dom';
 import { BsFillPersonFill, 
@@ -20,11 +20,44 @@ import { CSSTransition, SwitchTransition } from "react-transition-group";
 import { Outlet, useLocation }from "react-router-dom";
 import "../../styles/style.css";
 
+const verifyTitle = (pathname) => {
+    if (pathname === '/admin/home/dashboard'){
+        return 'Dashboard';
+    } else if (pathname === '/admin/home/users'){
+        return 'Usuários';
+    } else if (pathname === '/admin/home/users/register'){
+        return 'Novo Usuário';
+    } else if (pathname === '/admin/home/courses'){
+        return 'Cursos';
+    } else if (pathname === '/admin/home/courses/register'){
+        return 'Novo Curso';
+    } else if (pathname === '/admin/home/courses/register/class'){
+        return 'Nova Aula';
+    } else if (pathname === '/admin/home/tutorials'){
+        return 'Tutoriais';
+    } else if (pathname === '/admin/home/tutorials/register'){
+        return 'Novo Tutorial';
+    } else if (pathname === '/admin/home/classes'){
+        return 'Aulas';
+    } else if (pathname === '/admin/home/classes/register'){
+        return 'Nova Aula';
+    } else if (pathname === '/admin/home/registers'){
+        return 'Documentos';
+    } else if (pathname === '/admin/home/registers/register'){
+        return 'Novo Documento';
+    } else if (pathname === '/admin/home/groups'){
+        return 'Grupos';
+    } else if (pathname === '/admin/home/groups/register'){
+        return 'Novo Grupo';
+    } 
+};
+
 function AdminRoot(props) {
     const location = useLocation();
-    const [title, setTitle] = useState("Dashboard");
     const { nodeRef } = location.pathname;
     const { toggleSidebar, broken } = useProSidebar();
+    const [title, setTitle] = useState(verifyTitle(location.pathname));
+
     const style = {
         menu: {
             '& > .': { backgroundColor:'#2E332E',
@@ -40,9 +73,7 @@ function AdminRoot(props) {
         }
     }
     return (
-        <div style={{display: 'flex', height: '100%', flexDirection: 'column', direction: 'ltr'}}> 
-        <div style={{display: 'flex', height: '100%'}}>
-            <div md={2} style={{float: 'left'}}>
+        <div style={{display: 'flex', height: '100%', flexDirection: 'row', direction: 'ltr'}}> 
             <Sidebar customBreakPoint="400px" rootStyles={{height: '100%', color:'#DBDBDB', fontFamily: 'Arial'}} backgroundColor='#2E332E'>
                 <div onClick={() => toggleSidebar()} style={{marginLeft: 20}}>
                     <h2 className='mt-3'>Codecollege</h2>
@@ -84,8 +115,7 @@ function AdminRoot(props) {
                     </SubMenu>
                 </Menu>
             </Sidebar>
-            </div>
-            <main className='container scroll' style={{width: '100%', height:'100%', backgroundColor: 'white', padding: 0, margin: 0, position: 'static', overflow: 'auto' }}>
+            <main style={{width: '100%', height:'100%', backgroundColor: 'white',  overflow: 'auto' }}>
                 <div style={{margin: 6  }}>
                     {broken && (
                     <Button variant='dark' className="sb-button" onClick={() => toggleSidebar()}>
@@ -93,19 +123,30 @@ function AdminRoot(props) {
                     </Button>
                     )}
                 </div>
-                <Navbar style={{backgroundColor: '#F2F2F2', margin: 6}}>
+                <Navbar style={{backgroundColor: '#F2F2F2', margin: 10}}>
                     
-                    <Container>
+                    <Container fluid>
                         <Navbar.Brand>{title}</Navbar.Brand>
                         <Navbar.Toggle />
                         <Navbar.Collapse className="justify-content-end">
-                        <Navbar.Text>
-                            Logado como: <a href="#">Mark Otto</a>
-                        </Navbar.Text>
+                            <Nav>
+                                <DropdownButton
+                                    key='start'
+                                    id='dropdown'
+                                    drop='start'
+                                    variant="gray"
+                                    title={` ${'Mark Antony'}`}
+                                    >
+                                    <Dropdown.Item eventKey="1" href="/home">Plataforma</Dropdown.Item>
+                                    <Dropdown.Item eventKey="2" href="/admin/home/users/register">Criar curso</Dropdown.Item>
+                                    <Dropdown.Divider />
+                                    <Dropdown.Item eventKey="3" onClick={() => {alert("mudar")}}>Sair</Dropdown.Item>
+                                </DropdownButton>
+                            </Nav>
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>
-                <Container>
+                <Container fluid >
                     <SwitchTransition>
                         <CSSTransition nodeRef={nodeRef} key={location.pathname} timeout={600} classNames="page" unmountOnExit>
                             <div className="page">
@@ -115,7 +156,6 @@ function AdminRoot(props) {
                     </SwitchTransition>
                 </Container>
             </main>
-        </div>
         </div>
     );
 }
