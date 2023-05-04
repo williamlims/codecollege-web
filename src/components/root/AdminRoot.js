@@ -22,7 +22,7 @@ import "../../styles/style.css";
 
 function AdminRoot(props) {
     const location = useLocation();
-    const [title, setTitle] = useState("");
+    const [title, setTitle] = useState("Dashboard");
     const { nodeRef } = location.pathname;
     const { toggleSidebar, broken } = useProSidebar();
     const style = {
@@ -50,7 +50,7 @@ function AdminRoot(props) {
                 <Menu>
                     <div style={{marginLeft:20}}>Administrativo</div> 
                     <MenuItem icon={<BsFillBarChartFill />} onClick={() => setTitle("Dashboard")} component={<Link to="/admin/home/dashboard" />}>DASHBOARD</MenuItem>
-                    <SubMenu defaultOpen icon={<BsFillPersonFill />} rootStyles={style.menu} label="Usuário">
+                    <SubMenu icon={<BsFillPersonFill />} rootStyles={style.menu} label="Usuário">
                         <MenuItem rootStyles={style.subMenu} onClick={() => setTitle("Usuários")} component={<Link to="/admin/home/users" />}> Usuários </MenuItem>
                         <MenuItem rootStyles={style.subMenu} onClick={() => setTitle("Novo Usuário")} component={<Link to="/admin/home/users/register" />}> Cadastro </MenuItem>
                     </SubMenu>

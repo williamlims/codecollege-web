@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 import NavBarLight from '../../components/navbarlight/NavBarLight';
 import Nav from 'react-bootstrap/Nav';
 import { NavLink } from 'react-router-dom';
-import { AiFillFacebook, AiFillGoogleSquare } from "react-icons/ai";
+import { AiFillGoogleSquare } from "react-icons/ai";
 import Image from 'react-bootstrap/Image';
 import img from '../../assets/logoLogin.png';
 
@@ -40,10 +40,6 @@ function Login() {
                         <Nav.Link to="/recover-password" key="home" style={{fontSize: 14}} as={NavLink}>Esqueçeu sua senha?</Nav.Link>
                         <Nav.Link to="/register" style={{fontSize: 14, color:'blue'}} key="home" as={NavLink}>Criar novo cadastro.</Nav.Link>
                     </Form.Group>
-
-                    <Button className="w-100 mb-3" variant="primary" type="submit">
-                        <AiFillFacebook /> Entrar com Facebook
-                    </Button>
 
                     <Button className="w-100 mb-5" variant="danger" type="submit">
                         <AiFillGoogleSquare /> Entrar com Google
