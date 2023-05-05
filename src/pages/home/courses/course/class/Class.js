@@ -4,13 +4,10 @@ import BreadcrumbPath from '../../../../../components/pathNavigation/BreadcrumbP
 import NavMain from '../../../../../components/navMain/NavMain';
 import Footer from '../../../../../components/footer/Footer';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
-import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { NavLink } from 'react-router-dom';
 import TabInfo from '../../../../../components/tab/TabInfo';
-import user from '../../../../../assets/userMain.png';
-import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
 import ReactPlayer from 'react-player'
 
