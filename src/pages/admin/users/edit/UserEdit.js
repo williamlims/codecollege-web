@@ -138,7 +138,7 @@ function UserEdit() {
                     </Modal.Title>
                     </Modal.Header>
                     <Modal.Body className='d-flex flex-column justify-content-center'>
-                        <p> O usuário foi salvo com sucesso!</p>
+                        <p>Dados atualizados com sucesso!</p>
                         <Button variant="dark" onClick={() => setCmShow(false)} className='mt-2 m-3'>OK</Button>
                     </Modal.Body>
                 </Modal>
