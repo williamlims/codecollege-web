@@ -49,7 +49,9 @@ const verifyTitle = (pathname) => {
         return 'Grupos';
     } else if (pathname === '/admin/home/groups/register'){
         return 'Novo Grupo';
-    } 
+    } else if (pathname.substring(0,23) === '/admin/home/users/edit/'){
+        return 'Editar Usuário';
+    }
 };
 
 function AdminRoot(props) {

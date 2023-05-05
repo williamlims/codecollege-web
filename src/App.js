@@ -40,6 +40,7 @@ import CoursesReport from './pages/admin/reports/courses/CoursesReport';
 import ClassesReport from './pages/admin/reports/classes/ClassesReport';
 import DocumentsReport from './pages/admin/reports/documents/DocumentsReport';
 import GroupsReport from './pages/admin/reports/groups/GroupsReport';
+import UserEdit from './pages/admin/users/edit/UserEdit';
 
 function App() {
   return (
@@ -70,6 +71,7 @@ function App() {
         <Route path="admin/home" element={<AdminRoot />}>
           <Route index path="dashboard" element={<Dashboard />} />
           <Route index path="users" element={<Users />} />
+          <Route index path="users/edit/:id" element={<UserEdit />} />
           <Route index path="users/register" element={<UserRegister />} />
           <Route index path="courses" element={<CoursesList />} />
           <Route index path="courses/register" element={<NewCourse />} />
