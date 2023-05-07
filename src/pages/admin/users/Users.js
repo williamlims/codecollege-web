@@ -17,7 +17,7 @@ const dadosTeste = [
 function Users() {
     return (
         <>
-            <Container fluid>
+            <Container fluid className='py-1 px-2 shadow-sm'>
                 <Table striped bordered hover>
                     <thead>
                         <tr>
@@ -25,7 +25,7 @@ function Users() {
                             <th>Nome</th>
                             <th>E-mail</th>
                             <th>Nível de Acesso</th>
-                            <th>------</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,7 +36,7 @@ function Users() {
                                         <td>{item.nome}</td>
                                         <td>{item.email}</td>
                                         <td>{item.usuario}</td>
-                                        <td><Button variant='dark' as={NavLink} to={item.link}>Editar</Button></td>
+                                        <td align='center'><Button variant='dark' as={NavLink} to={item.link}>Editar</Button></td>
                                     </tr>
                                 );
                             }

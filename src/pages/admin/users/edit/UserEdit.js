@@ -125,7 +125,7 @@ function UserEdit() {
 
     return (
         <>
-            <Container fluid>
+            <Container fluid className='py-1 px-2 shadow-sm'>
                 <Modal
                     size="sm"
                     show={cmShow}
@@ -142,7 +142,7 @@ function UserEdit() {
                         <Button variant="dark" onClick={() => setCmShow(false)} className='mt-2 m-3'>OK</Button>
                     </Modal.Body>
                 </Modal>
-                <Form.Group className="mb-3 mt-4" controlId="name">
+                <Form.Group className="mb-3 mt-2" controlId="name">
                     <Form.Control type="text" onInput={() => backToStartName()} style={style.nameColor} placeholder="Nome do usuário" />
                     <Form.Text style={style.nameColor}>
                         {infoname}
@@ -192,7 +192,10 @@ function UserEdit() {
                 <Row className="mb-3">
                     <Form.Group as={Col} controlId="btnSaveUser">
                         <Button variant="dark" as={Col} md={2} lg={2} sm={2} onClick={() => submitValidate()} type="submit" >
-                            Salvar
+                            Atualizar
+                        </Button>{` `}
+                        <Button variant="danger" as={Col} md={2} lg={2} sm={2} onClick={() => submitValidate()} type="submit" >
+                            Excluir
                         </Button>
                     </Form.Group>
                 </Row>

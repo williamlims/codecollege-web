@@ -125,7 +125,7 @@ function UserRegister() {
 
     return (
         <>
-            <Container fluid>
+            <Container fluid className='py-1 px-2 shadow-sm'>
                 <Modal
                     size="sm"
                     show={cmShow}
@@ -142,60 +142,62 @@ function UserRegister() {
                         <Button variant="dark" onClick={() => setCmShow(false)} className='mt-2 m-3'>OK</Button>
                     </Modal.Body>
                 </Modal>
-                <Form.Group className="mb-3 mt-4" controlId="name">
-                    <Form.Control type="text" onInput={() => backToStartName()} style={style.nameColor} placeholder="Nome do usuário" />
-                    <Form.Text style={style.nameColor}>
-                        {infoname}
-                    </Form.Text>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="surname">
-                    <Form.Control onInput={() => backToStartSurname()} type="text" style={style.surnameColor} placeholder="Sobrenome do usuário" />
-                    <Form.Text style={style.surnameColor}>
-                        {infosurname}
-                    </Form.Text>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="date">
-                    <Form.Control onInput={() => backToStartDate()} type="date" style={style.dateColor} />
-                    <Form.Text style={style.dateColor}>
-                        {infodate}
-                    </Form.Text>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="email">
-                    <Form.Control onInput={() => backToStartEmail()} type="email" style={style.emailColor} />
-                    <Form.Text style={style.emailColor}>
-                        {infoemail}
-                    </Form.Text>
-                </Form.Group>
-                <Row className="mb-3">
-                    <InputGroup as={Col}>
-                        <Form.Control onInput={() => backToStartPass()} type="password" style={style.passColor} placeholder="Senha" id="password" />
-                        <InputGroup.Text id="passOne"><BsFillEyeSlashFill /></InputGroup.Text>
-                    </InputGroup>
-                    <InputGroup as={Col}>
-                        <Form.Control onInput={() => backToStartPass2()} type="password" style={style.pass2Color} placeholder="Repetir senha" id="password2" />
-                        <InputGroup.Text id="passTwo"><BsFillEyeSlashFill /></InputGroup.Text>
-                    </InputGroup>
-                    <Form.Text style={style.passColor}>
-                        {infopass}
-                    </Form.Text>
-                </Row>
-                <Form.Group className="mb-4">
-                    <Form.Select onInput={() => backToStartLevel()} id="levelUser" style={style.levelColor}>
-                        <option>----------</option>
-                        <option value={1}>usuário</option>
-                        <option value={2}>administrador</option>
-                    </Form.Select>
-                    <Form.Text style={style.levelColor}>
-                        {infolevel}
-                    </Form.Text>
-                </Form.Group>
-                <Row className="mb-3">
-                    <Form.Group as={Col} controlId="btnSaveUser">
-                        <Button variant="dark" as={Col} md={2} lg={2} sm={2} onClick={() => submitValidate()} type="submit" >
-                            Salvar
-                        </Button>
+                <Form>
+                    <Form.Group className="mb-3 mt-2" controlId="name">
+                        <Form.Control type="text" onInput={() => backToStartName()} style={style.nameColor} placeholder="Nome do usuário" />
+                        <Form.Text style={style.nameColor}>
+                            {infoname}
+                        </Form.Text>
                     </Form.Group>
-                </Row>
+                    <Form.Group className="mb-3" controlId="surname">
+                        <Form.Control onInput={() => backToStartSurname()} type="text" style={style.surnameColor} placeholder="Sobrenome do usuário" />
+                        <Form.Text style={style.surnameColor}>
+                            {infosurname}
+                        </Form.Text>
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="date">
+                        <Form.Control onInput={() => backToStartDate()} type="date" style={style.dateColor} />
+                        <Form.Text style={style.dateColor}>
+                            {infodate}
+                        </Form.Text>
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="email">
+                        <Form.Control onInput={() => backToStartEmail()} type="email" style={style.emailColor} />
+                        <Form.Text style={style.emailColor}>
+                            {infoemail}
+                        </Form.Text>
+                    </Form.Group>
+                    <Row className="mb-3">
+                        <InputGroup as={Col}>
+                            <Form.Control onInput={() => backToStartPass()} type="password" style={style.passColor} placeholder="Senha" id="password" />
+                            <InputGroup.Text id="passOne"><BsFillEyeSlashFill /></InputGroup.Text>
+                        </InputGroup>
+                        <InputGroup as={Col}>
+                            <Form.Control onInput={() => backToStartPass2()} type="password" style={style.pass2Color} placeholder="Repetir senha" id="password2" />
+                            <InputGroup.Text id="passTwo"><BsFillEyeSlashFill /></InputGroup.Text>
+                        </InputGroup>
+                        <Form.Text style={style.passColor}>
+                            {infopass}
+                        </Form.Text>
+                    </Row>
+                    <Form.Group className="mb-3">
+                        <Form.Select onInput={() => backToStartLevel()} id="levelUser" style={style.levelColor}>
+                            <option>----------</option>
+                            <option value={1}>usuário</option>
+                            <option value={2}>administrador</option>
+                        </Form.Select>
+                        <Form.Text style={style.levelColor}>
+                            {infolevel}
+                        </Form.Text>
+                    </Form.Group>
+                    <Row className="mb-3">
+                        <Form.Group as={Col} controlId="btnSaveUser">
+                            <Button variant="dark" as={Col} md={2} lg={2} sm={2} onClick={() => submitValidate()} type="submit" >
+                                Salvar
+                            </Button>
+                        </Form.Group>
+                    </Row>
+                </Form>
             </Container>
         </>
     );
