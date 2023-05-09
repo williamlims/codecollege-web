@@ -26,12 +26,18 @@ import Users from './pages/admin/users/Users';
 import UserRegister from './pages/admin/users/register/UserRegister';
 import CoursesList from './pages/admin/courses/CoursesList';
 import NewCourse from './pages/admin/courses/newcourse/NewCourse';
+import ClassesList from './pages/admin/courses/classes/ClassesList';
+import ClassEdit from './pages/admin/courses/editclass/ClassEdit';
+import CourseEdit from './pages/admin/courses/editcourse/CourseEdit';
 import NewClass from './pages/admin/courses/newclass/NewClass';
 import TutorialsList from './pages/admin/tutorials/TutorialsList';
+import TutorialEdit from './pages/admin/tutorials/edittutorial/TutorialEdit';
 import NewTutorial from './pages/admin/tutorials/newtutorial/NewTutorial';
 import FreeClasses from './pages/admin/freeclasses/FreeClasses';
+import FreeClassEdit from './pages/admin/freeclasses/editfreeclass/FreeClassEdit';
 import NewFreeClass from './pages/admin/freeclasses/newfreeclass/NewFreeClass';
 import Registers from './pages/admin/library/Registers';
+import RegisterEdit from './pages/admin/library/editregister/RegisterEdit';
 import NewRegister from './pages/admin/library/newregister/NewRegister';
 import Groups from './pages/admin/groups/Groups';
 import NewGroup from './pages/admin/groups/newgroup/NewGroup';
@@ -75,12 +81,18 @@ function App() {
           <Route index path="users/register" element={<UserRegister />} />
           <Route index path="courses" element={<CoursesList />} />
           <Route index path="courses/register" element={<NewCourse />} />
+          <Route index path="courses/classes" element={<ClassesList />} />
+          <Route index path="courses/classes/edit/:id" element={<ClassEdit />} />
           <Route index path="courses/register/class" element={<NewClass />} />
+          <Route index path="courses/edit/:id" element={<CourseEdit />} />
           <Route index path="tutorials" element={<TutorialsList />} />
+          <Route index path="tutorials/edit/:id" element={<TutorialEdit />} />
           <Route index path="tutorials/register" element={<NewTutorial />} />
           <Route index path="classes" element={<FreeClasses />} />
+          <Route index path="classes/edit/:id" element={<FreeClassEdit />} />
           <Route index path="classes/register" element={<NewFreeClass />} />
           <Route index path="registers" element={<Registers />} />
+          <Route index path="registers/edit/:id" element={<RegisterEdit />} />
           <Route index path="registers/register" element={<NewRegister />} />
           <Route index path="groups" element={<Groups />} />
           <Route index path="groups/register" element={<NewGroup />} />

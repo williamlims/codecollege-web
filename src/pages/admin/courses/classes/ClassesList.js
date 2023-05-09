@@ -5,13 +5,13 @@ import Button from 'react-bootstrap/Button';
 import { NavLink } from 'react-router-dom';
 
 const dadosTeste = [
-    {id:'F2023R4E9E2C16L20A36S674S', aula:'Introdução', nivel:'Avançado', assunto:'Programação Java', link:'/admin/home/classes/edit/1'},
-    {id:'F2023R4E9E2C16L20A36S675S', aula:'Primeiros Passos', nivel:'Avançado', assunto:'Programação Java', link:'/admin/home/classes/edit/2'},
-    {id:'F2023R4E9E2C16L20A36S676S', aula:'Análise de código', nivel:'Avançado', assunto:'Programação Java', link:'/admin/home/classes/edit/3'},
-    {id:'F2023R4E9E2C16L20A36S677S', aula:'Design', nivel:'Avançado', assunto:'Programação Java', link:'/admin/home/classes/edit/4'},
-    {id:'F2023R4E9E2C16L20A36S678S', aula:'Matemmática Avançada', nivel:'Avançado', assunto:'Programação Java', link:'/admin/home/classes/edit/5'},
-    {id:'F2023R4E9E2C16L20A36S679S', aula:'Objetos Compostos', nivel:'Avançado', assunto:'Programação Java', link:'/admin/home/classes/edit/6'},
-    {id:'F2023R4E9E2C16L20A36S680S', aula:'Dados em Escala', nivel:'Avançado', assunto:'Programação Java', link:'/admin/home/classes/edit/7'},
+    {id:'C2023L4A9S2S10E4S44S78', aula:'Introdução', modulo:'1', curso:'Programação Java', link:'/admin/home/courses/classes/edit/1'},
+    {id:'C2023L4A9S2S10E4S44S78', aula:'Primeiros Passos', modulo:'1', curso:'Programação Java', link:'/admin/home/courses/classes/edit/2'},
+    {id:'C2023L4A9S2S10E4S44S78', aula:'Análise de código', modulo:'1', curso:'Programação Java', link:'/admin/home/courses/classes/edit/3'},
+    {id:'C2023L4A9S2S10E4S44S78', aula:'Design', modulo:'1', curso:'Programação Java', link:'/admin/home/courses/classes/edit/4'},
+    {id:'C2023L4A9S2S10E4S44S78', aula:'Matemmática Avançada', modulo:'1', curso:'Programação Java', link:'/admin/home/courses/classes/edit/5'},
+    {id:'C2023L4A9S2S10E4S44S78', aula:'Objetos Compostos', modulo:'1', curso:'Programação Java', link:'/admin/home/courses/classes/edit/6'},
+    {id:'C2023L4A9S2S10E4S44S78', aula:'Dados em Escala', modulo:'1', curso:'Programação Java', link:'/admin/home/courses/classes/edit/7'},
 ];
 
 function ClassesList() {
@@ -23,8 +23,8 @@ function ClassesList() {
                         <tr>
                             <th>ID</th>
                             <th>AULA</th>
-                            <th>NÍVEL</th>
-                            <th>ASSUNTO</th>
+                            <th>MÓDULO</th>
+                            <th>CURSO</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -34,8 +34,8 @@ function ClassesList() {
                                     <tr>
                                         <td>{item.id}</td>
                                         <td>{item.aula}</td>
-                                        <td>{item.nivel}</td>
-                                        <td>{item.assunto}</td>
+                                        <td>{item.modulo}</td>
+                                        <td>{item.curso}</td>
                                         <td align='center'><Button variant='dark' as={NavLink} to={item.link}>Editar</Button></td>
                                     </tr>
                                 );

@@ -8,7 +8,7 @@ import Modal from 'react-bootstrap/Modal';
 import InputGroup from 'react-bootstrap/InputGroup';
 
 
-function NewTutorial() {
+function RegisterEdit() {
 
     const [cmShow, setCmShow] = useState(false);
     const [infonameCourse, setInfonameCourse] = useState("Por favor, insira o nome do curso!");
@@ -26,8 +26,8 @@ function NewTutorial() {
 
     const returnID = () => {
         const date = new Date();
-        return ('T'+date.getFullYear()+'U'+date.getMonth()+'T'+date.getDate()+'O'+
-                   date.getDay()+'R'+date.getHours()+'I'+date.getMinutes()+'A'+date.getSeconds()+'L'+
+        return ('D'+date.getFullYear()+'O'+date.getMonth()+'C'+date.getDate()+'U'+
+                   date.getDay()+'M'+date.getHours()+'E'+date.getMinutes()+'N'+date.getSeconds()+'T'+
                    date.getMilliseconds());
     };
 
@@ -74,26 +74,26 @@ function NewTutorial() {
         <>
             <Container fluid className='p-2 shadow-sm'>
                 <Form as={Col} xl={8} lg={12} md={12} sm={12} es={12}>
-                    <Form.Group className="mb-3 mt-2" controlId="controlIdTutorial">
+                    <Form.Group className="mb-3 mt-2" controlId="controlIdDocument">
                         <Form.Control type="text" disabled value={returnID()}/>
                         <Form.Text style={style.conrtolIDColor}>
-                            {`Este é o ID de controle deste tutorial!`}
+                            {`Este é o ID de controle deste documento!`}
                         </Form.Text>
                     </Form.Group>
-                    <Form.Group className="mb-3 mt-2" controlId="tutorialName">
-                        <Form.Control type="text" placeholder="Nome do tutorial"/>
+                    <Form.Group className="mb-3 mt-2" controlId="documentName">
+                        <Form.Control type="text" placeholder="Nome do documento"/>
                         <Form.Text style={style.conrtolIDColor}>
-                            {`Por favor, insira o nome do tutorial!`}
+                            {`Por favor, insira o nome do documento!`}
                         </Form.Text>
                     </Form.Group>
-                    <Form.Group className="mb-3 mt-2" controlId="fileDocument">
-                        <Form.Control type="file" placeholder="Envie o arquivo"/>
+                    <Form.Group className="mb-3 mt-2" controlId="fileDocumentName">
+                        <Form.Control type="file" disabled placeholder="Envie o arquivo"/>
                         <Form.Text style={style.conrtolIDColor}>
-                            {`Envie o documento referente ao tutorial (ex: tutorial.pdf)!`}
+                            {`Envie o documento (ex: tutorial.pdf)!`}
                         </Form.Text>
                     </Form.Group>
                     <Form.Group className="mb-3">
-                        <Form.Select id="levelTutorial" style={style.levelCourseColor}>
+                        <Form.Select id="levelDocument" style={style.levelCourseColor}>
                             <option>----------</option>
                             <option value={1}>Iniciante</option>
                             <option value={2}>Intermediário</option>
@@ -101,11 +101,11 @@ function NewTutorial() {
                             <option value={4}>Especialista</option>
                         </Form.Select>
                         <Form.Text style={style.levelCourseColor}>
-                            {`Por favor, escolha o módulo que está aula fará parte!`}
+                            {`Por favor, escolha o nível de leitura deste documento!`}
                         </Form.Text>
                     </Form.Group>
                     <Form.Group className="mb-4">
-                        <Form.Select id="tutotialSubject" style={style.areaCourseColor}>
+                        <Form.Select id="documentSubject" style={style.areaCourseColor}>
                             <option>----------</option>
                             <option value={1}>Tecnologia</option>
                             <option value={2}>Administração</option>
@@ -117,13 +117,16 @@ function NewTutorial() {
                             <option value={8}>Outro</option>
                         </Form.Select>
                         <Form.Text style={style.areaCourseColor}>
-                            {`Por favor, escolha o assunto deste tutorial!`}
+                            {`Por favor, escolha o assunto deste documento!`}
                         </Form.Text>
                     </Form.Group>
                     <Row className="mb-4">
-                        <Form.Group as={Col} controlId="btnSaveCourse">
+                        <Form.Group as={Col} controlId="btnSavedocument">
                             <Button variant="dark" as={Col} md={2} lg={2} sm={2} onClick={() => submitValidate()} type="submit" >
                                 Salvar
+                            </Button>{`  `}
+                            <Button variant="danger" as={Col} md={2} lg={2} sm={2} onClick={() => submitValidate()} type="submit" >
+                                Excluir
                             </Button>
                         </Form.Group>
                     </Row>
@@ -133,4 +136,4 @@ function NewTutorial() {
     );
 }
 
-export default NewTutorial;
+export default RegisterEdit;

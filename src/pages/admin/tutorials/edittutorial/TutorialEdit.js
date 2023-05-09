@@ -8,7 +8,7 @@ import Modal from 'react-bootstrap/Modal';
 import InputGroup from 'react-bootstrap/InputGroup';
 
 
-function NewTutorial() {
+function TutorialEdit() {
 
     const [cmShow, setCmShow] = useState(false);
     const [infonameCourse, setInfonameCourse] = useState("Por favor, insira o nome do curso!");
@@ -87,7 +87,7 @@ function NewTutorial() {
                         </Form.Text>
                     </Form.Group>
                     <Form.Group className="mb-3 mt-2" controlId="fileDocument">
-                        <Form.Control type="file" placeholder="Envie o arquivo"/>
+                        <Form.Control type="file" disabled placeholder="Envie o arquivo"/>
                         <Form.Text style={style.conrtolIDColor}>
                             {`Envie o documento referente ao tutorial (ex: tutorial.pdf)!`}
                         </Form.Text>
@@ -124,6 +124,9 @@ function NewTutorial() {
                         <Form.Group as={Col} controlId="btnSaveCourse">
                             <Button variant="dark" as={Col} md={2} lg={2} sm={2} onClick={() => submitValidate()} type="submit" >
                                 Salvar
+                            </Button>{`  `}
+                            <Button variant="danger" as={Col} md={2} lg={2} sm={2} onClick={() => submitValidate()} type="submit" >
+                                Excluir
                             </Button>
                         </Form.Group>
                     </Row>
@@ -133,4 +136,4 @@ function NewTutorial() {
     );
 }
 
-export default NewTutorial;
+export default TutorialEdit;

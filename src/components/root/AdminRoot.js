@@ -90,6 +90,7 @@ function AdminRoot(props) {
                     <SubMenu icon={<BsEaselFill />} label="Curso">
                         <MenuItem rootStyles={style.subMenu} onClick={() => setTitle("Cursos")} component={<Link to="/admin/home/courses" />}> Cursos </MenuItem>
                         <MenuItem rootStyles={style.subMenu} onClick={() => setTitle("Novo Curso")} component={<Link to="/admin/home/courses/register" />}> Criar Curso </MenuItem>
+                        <MenuItem rootStyles={style.subMenu} onClick={() => setTitle("Aulas")} component={<Link to="/admin/home/courses/classes" />}> Aulas </MenuItem>
                         <MenuItem rootStyles={style.subMenu} onClick={() => setTitle("Nova Aula")} component={<Link to="/admin/home/courses/register/class" />}> Criar Aula </MenuItem>
                     </SubMenu>
                     <SubMenu icon={<BsFillJournalBookmarkFill />} label="Tutorial">
