@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { NavLink } from 'react-router-dom';
 import SplitButton from 'react-bootstrap/SplitButton';
 import Dropdown from 'react-bootstrap/Dropdown';
+import Accordion from 'react-bootstrap/Accordion';
 
 const dadosTeste = [
     {id:'G2023R4O9U2P19I30D38C109T', grupo:'Contabilidade', assunto:'Trabalho', link:1},
@@ -16,11 +17,25 @@ const dadosTeste = [
     {id:'G2023R4O9U2P19I30D38C115T', grupo:'Desenvolvimento', assunto:'Trabalho', link:1},
 ];
 
-function Groups() {
+function GroupsUsers() {
     return (
         <>
             <Container fluid className='p-2 shadow-sm'>
-                <Table striped bordered hover>
+                <Accordion>
+                    <Accordion.Item eventKey="0">
+                        <Accordion.Header><h4>Contabilidade [Trabalho]</h4></Accordion.Header>
+                        <Accordion.Body>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                            minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                            aliquip ex ea commodo consequat. Duis aute irure dolor in
+                            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                            culpa qui officia deserunt mollit anim id est laborum.
+                        </Accordion.Body>
+                    </Accordion.Item>
+                </Accordion>
+                <Table striped bordered hover className='mt-2'>
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -37,21 +52,7 @@ function Groups() {
                                         <td>{item.grupo}</td>
                                         <td>{item.assunto}</td>
                                         <td align='center'>
-                                            <SplitButton
-                                                key={`end`}
-                                                id={`dropdown-button-drop-end`}
-                                                drop={`end`}
-                                                variant="dark"
-                                                title={` Ver `}
-                                                >
-                                                <Dropdown.Item eventKey="1" as={NavLink} to={`/admin/home/groups/users/`+item.link}>Usuários</Dropdown.Item>
-                                                <Dropdown.Item eventKey="2" as={NavLink} to={`/admin/home/groups/courses/`+item.link}>Cursos</Dropdown.Item>
-                                                <Dropdown.Item eventKey="3" as={NavLink} to={`/admin/home/groups/tutorials/`+item.link}>Tutoriais</Dropdown.Item>
-                                                <Dropdown.Item eventKey="4" as={NavLink} to={`/admin/home/groups/classes/`+item.link}>Aulas Livres</Dropdown.Item>
-                                                <Dropdown.Item eventKey="5" as={NavLink} to={`/admin/home/groups/documents/`+item.link}>Documentos</Dropdown.Item>
-                                                <Dropdown.Divider />
-                                                <Dropdown.Item eventKey="6" as={NavLink} to={`/admin/home/groups/edit/`+item.link}>Editar</Dropdown.Item>
-                                            </SplitButton>
+                                            <Button variant='danger' as={NavLink} to={item.link}>Remover</Button>
                                         </td>
                                     </tr>
                                 );
@@ -64,4 +65,4 @@ function Groups() {
     );
 }
 
-export default Groups;
+export default GroupsUsers;

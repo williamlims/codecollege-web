@@ -40,6 +40,11 @@ import Registers from './pages/admin/library/Registers';
 import RegisterEdit from './pages/admin/library/editregister/RegisterEdit';
 import NewRegister from './pages/admin/library/newregister/NewRegister';
 import Groups from './pages/admin/groups/Groups';
+import GroupsUsers from './pages/admin/groups/seegroup/GroupsUsers';
+import GroupsCourses from './pages/admin/groups/seegroup/GroupsCourses';
+import GroupsTutorials from './pages/admin/groups/seegroup/GroupsTutorials';
+import GroupsClasses from './pages/admin/groups/seegroup/GroupsClasses';
+import GroupsDocuments from './pages/admin/groups/seegroup/GroupsDocuments';
 import NewGroup from './pages/admin/groups/newgroup/NewGroup';
 import UsersReport from './pages/admin/reports/users/UsersReport';
 import CoursesReport from './pages/admin/reports/courses/CoursesReport';
@@ -97,6 +102,11 @@ function App() {
           <Route index path="groups" element={<Groups />} />
           <Route index path="groups/register" element={<NewGroup />} />
           <Route index path="groups" element={<Groups />} />
+          <Route index path="groups/users/:id" element={<GroupsUsers />} />
+          <Route index path="groups/courses/:id" element={<GroupsCourses />} />
+          <Route index path="groups/tutorials/:id" element={<GroupsTutorials />} />
+          <Route index path="groups/classes/:id" element={<GroupsClasses />} />
+          <Route index path="groups/documents/:id" element={<GroupsDocuments />} />
           <Route index path="groups/register" element={<NewGroup />} />
           <Route index path="reports/users" element={<UsersReport />} />
           <Route index path="reports/courses" element={<CoursesReport />} />
