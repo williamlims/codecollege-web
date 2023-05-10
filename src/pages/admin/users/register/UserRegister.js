@@ -24,6 +24,13 @@ function UserRegister() {
     const [infolevel, setInfolevel] = useState("Por favor, insira o nível de acesso do usuário!");
     const [infolevelColor, setInfolevelColor] = useState("gray");
 
+    const returnID = () => {
+        const date = new Date();
+        return ('U'+date.getFullYear()+'S'+date.getMonth()+'E'+date.getDate()+'R'+
+                   date.getDay()+'I'+date.getHours()+'D'+date.getMinutes()+'C'+date.getSeconds()+'T'+
+                   date.getMilliseconds());
+    };
+
     const style = {
         nameColor:{color:infonameColor, borderColor:infonameColor},
         surnameColor:{color:infosurnameColor, borderColor:infosurnameColor},
@@ -143,6 +150,12 @@ function UserRegister() {
                     </Modal.Body>
                 </Modal>
                 <Form>
+                    <Form.Group className="mb-3 mt-2" controlId="controlId">
+                        <Form.Control type="text" disabled value={returnID()}/>
+                        <Form.Text style={style.conrtolIDColor}>
+                            Este é o ID de controle de usuário!
+                        </Form.Text>
+                    </Form.Group>
                     <Form.Group className="mb-3 mt-2" controlId="name">
                         <Form.Control type="text" onInput={() => backToStartName()} style={style.nameColor} placeholder="Nome do usuário" />
                         <Form.Text style={style.nameColor}>

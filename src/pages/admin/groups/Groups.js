@@ -8,12 +8,12 @@ import Dropdown from 'react-bootstrap/Dropdown';
 
 const dadosTeste = [
     {id:'G2023R4O9U2P19I30D38C109T', grupo:'Contabilidade', assunto:'Trabalho', link:1},
-    {id:'G2023R4O9U2P19I30D38C110T', grupo:'Financeiro', assunto:'Trabalho', link:1},
-    {id:'G2023R4O9U2P19I30D38C111T', grupo:'Produção', assunto:'Trabalho', link:1},
-    {id:'G2023R4O9U2P19I30D38C112T', grupo:'Desenvolvimento', assunto:'Trabalho', link:1},
-    {id:'G2023R4O9U2P19I30D38C113T', grupo:'Desenvolvimento', assunto:'Trabalho', link:1},
-    {id:'G2023R4O9U2P19I30D38C114T', grupo:'Desenvolvimento', assunto:'Trabalho', link:1},
-    {id:'G2023R4O9U2P19I30D38C115T', grupo:'Desenvolvimento', assunto:'Trabalho', link:1},
+    {id:'G2023R4O9U2P19I30D38C110T', grupo:'Financeiro', assunto:'Trabalho', link:2},
+    {id:'G2023R4O9U2P19I30D38C111T', grupo:'Produção', assunto:'Trabalho', link:3},
+    {id:'G2023R4O9U2P19I30D38C112T', grupo:'Desenvolvimento', assunto:'Trabalho', link:4},
+    {id:'G2023R4O9U2P19I30D38C113T', grupo:'Desenvolvimento', assunto:'Trabalho', link:5},
+    {id:'G2023R4O9U2P19I30D38C114T', grupo:'Desenvolvimento', assunto:'Trabalho', link:6},
+    {id:'G2023R4O9U2P19I30D38C115T', grupo:'Desenvolvimento', assunto:'Trabalho', link:7},
 ];
 
 function Groups() {
@@ -30,6 +30,7 @@ function Groups() {
                         </tr>
                     </thead>
                     <tbody>
+                        
                         {dadosTeste.map( (item) => {
                             return (
                                     <tr>

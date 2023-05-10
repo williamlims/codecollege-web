@@ -46,12 +46,8 @@ import GroupsTutorials from './pages/admin/groups/seegroup/GroupsTutorials';
 import GroupsClasses from './pages/admin/groups/seegroup/GroupsClasses';
 import GroupsDocuments from './pages/admin/groups/seegroup/GroupsDocuments';
 import NewGroup from './pages/admin/groups/newgroup/NewGroup';
-import UsersReport from './pages/admin/reports/users/UsersReport';
-import CoursesReport from './pages/admin/reports/courses/CoursesReport';
-import ClassesReport from './pages/admin/reports/classes/ClassesReport';
-import DocumentsReport from './pages/admin/reports/documents/DocumentsReport';
-import GroupsReport from './pages/admin/reports/groups/GroupsReport';
 import UserEdit from './pages/admin/users/edit/UserEdit';
+import GroupInsert from './pages/admin/groups/insertgroup/GroupInsert';
 
 function App() {
   return (
@@ -108,11 +104,7 @@ function App() {
           <Route index path="groups/classes/:id" element={<GroupsClasses />} />
           <Route index path="groups/documents/:id" element={<GroupsDocuments />} />
           <Route index path="groups/register" element={<NewGroup />} />
-          <Route index path="reports/users" element={<UsersReport />} />
-          <Route index path="reports/courses" element={<CoursesReport />} />
-          <Route index path="reports/classes" element={<ClassesReport />} />
-          <Route index path="reports/documents" element={<DocumentsReport />} />
-          <Route index path="reports/groups" element={<GroupsReport />} />
+          <Route index path="groups/insert" element={<GroupInsert />} />
         </Route>
       </Routes>
     </BrowserRouter>

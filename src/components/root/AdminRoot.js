@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Sidebar, Menu, SubMenu, MenuItem, useProSidebar } from 'react-pro-sidebar';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
@@ -14,7 +14,8 @@ import { BsFillPersonFill,
          BsCaretRightSquare,
          BsJournals,
          BsPeopleFill,
-         BsFiletypePdf
+         BsFiletypePdf,
+         BsDownload
 } from "react-icons/bs";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 import { Outlet, useLocation }from "react-router-dom";
@@ -33,6 +34,8 @@ const verifyTitle = (pathname) => {
         return 'Novo Curso';
     } else if (pathname === '/admin/home/courses/register/class'){
         return 'Nova Aula';
+    } else if (pathname === '/admin/home/courses/classes'){
+        return 'Aulas';
     } else if (pathname === '/admin/home/tutorials'){
         return 'Tutoriais';
     } else if (pathname === '/admin/home/tutorials/register'){
@@ -49,8 +52,30 @@ const verifyTitle = (pathname) => {
         return 'Grupos';
     } else if (pathname === '/admin/home/groups/register'){
         return 'Novo Grupo';
+    } else if (pathname === '/admin/home/groups/insert'){
+        return 'Inserir no Grupo';
     } else if (pathname.substring(0,23) === '/admin/home/users/edit/'){
         return 'Editar Usuário';
+    } else if (pathname.substring(0,25) === '/admin/home/courses/edit/'){
+        return 'Editar Curso';
+    } else if (pathname.substring(0,33) === '/admin/home/courses/classes/edit/'){
+        return 'Editar Aula';
+    } else if (pathname.substring(0,27) === '/admin/home/tutorials/edit/'){
+        return 'Editar Tutorial';
+    } else if (pathname.substring(0,25) === '/admin/home/classes/edit/'){
+        return 'Editar Aula';
+    } else if (pathname.substring(0,27) === '/admin/home/registers/edit/'){
+        return 'Editar Documento';
+    } else if (pathname.substring(0,25) === '/admin/home/groups/users/'){
+        return 'Usuários no Grupo';
+    } else if (pathname.substring(0,27) === '/admin/home/groups/courses/'){
+        return 'Cursos no Grupo';
+    } else if (pathname.substring(0,29) === '/admin/home/groups/tutorials/'){
+        return 'Tutoriais no Grupo';
+    } else if (pathname.substring(0,27) === '/admin/home/groups/classes/'){
+        return 'Aulas Livres no Grupo';
+    } else if (pathname.substring(0,29) === '/admin/home/groups/documents/'){
+        return 'Documentos no Grupo';
     }
 };
 
@@ -58,7 +83,11 @@ function AdminRoot(props) {
     const location = useLocation();
     const { nodeRef } = location.pathname;
     const { toggleSidebar, broken } = useProSidebar();
-    const [title, setTitle] = useState(verifyTitle(location.pathname));
+    const [title, setTitle] = useState("");
+
+    useEffect(() => {
+        setTitle(verifyTitle(location.pathname));
+    });
 
     const style = {
         menu: {
@@ -108,13 +137,14 @@ function AdminRoot(props) {
                     <SubMenu icon={<BsPeopleFill />} label="Grupo">
                         <MenuItem rootStyles={style.subMenu} onClick={() => setTitle("Grupos")} component={<Link to="/admin/home/groups" />}> Grupos </MenuItem>
                         <MenuItem rootStyles={style.subMenu} onClick={() => setTitle("Novo Grupo")} component={<Link to="/admin/home/groups/register" />}> Novo Grupo </MenuItem>
+                        <MenuItem rootStyles={style.subMenu} onClick={() => setTitle("Inserir no Grupo")} component={<Link to="/admin/home/groups/insert" />}> Inserir no Grupo </MenuItem>
                     </SubMenu>
                     <SubMenu icon={<BsFiletypePdf />} label="Relatório">
-                        <MenuItem rootStyles={style.subMenu} component={<Link to="/admin/home/reports/users" />}> Usuários </MenuItem>
-                        <MenuItem rootStyles={style.subMenu} component={<Link to="/admin/home/reports/courses" />}> Cursos </MenuItem>
-                        <MenuItem rootStyles={style.subMenu} component={<Link to="/admin/home/reports/classes" />}> Aulas </MenuItem>
-                        <MenuItem rootStyles={style.subMenu} component={<Link to="/admin/home/reports/documents" />}> Documentos </MenuItem>
-                        <MenuItem rootStyles={style.subMenu} component={<Link to="/admin/home/reports/groups" />}> Grupos </MenuItem>
+                        <MenuItem rootStyles={style.subMenu} icon={<BsDownload />} onClick={() => alert("Mudar!")}> Usuários </MenuItem>
+                        <MenuItem rootStyles={style.subMenu} icon={<BsDownload />} onClick={() => alert("Mudar!")}> Cursos </MenuItem>
+                        <MenuItem rootStyles={style.subMenu} icon={<BsDownload />} onClick={() => alert("Mudar!")}> Aulas </MenuItem>
+                        <MenuItem rootStyles={style.subMenu} icon={<BsDownload />} onClick={() => alert("Mudar!")}> Documentos </MenuItem>
+                        <MenuItem rootStyles={style.subMenu} icon={<BsDownload />} onClick={() => alert("Mudar!")}> Grupos </MenuItem>
                     </SubMenu>
                 </Menu>
             </Sidebar>
@@ -126,8 +156,7 @@ function AdminRoot(props) {
                     </Button>
                     )}
                 </div>
-                <Navbar style={{backgroundColor: '#F2F2F2', margin: 10}}>
-                    
+                <Navbar style={{backgroundColor: '#F2F2F2', margin: 10}}> 
                     <Container fluid>
                         <Navbar.Brand>{title}</Navbar.Brand>
                         <Navbar.Toggle />

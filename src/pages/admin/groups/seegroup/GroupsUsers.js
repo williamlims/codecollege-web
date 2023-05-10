@@ -8,13 +8,13 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Accordion from 'react-bootstrap/Accordion';
 
 const dadosTeste = [
-    {id:'G2023R4O9U2P19I30D38C109T', grupo:'Contabilidade', assunto:'Trabalho', link:1},
-    {id:'G2023R4O9U2P19I30D38C110T', grupo:'Financeiro', assunto:'Trabalho', link:1},
-    {id:'G2023R4O9U2P19I30D38C111T', grupo:'Produção', assunto:'Trabalho', link:1},
-    {id:'G2023R4O9U2P19I30D38C112T', grupo:'Desenvolvimento', assunto:'Trabalho', link:1},
-    {id:'G2023R4O9U2P19I30D38C113T', grupo:'Desenvolvimento', assunto:'Trabalho', link:1},
-    {id:'G2023R4O9U2P19I30D38C114T', grupo:'Desenvolvimento', assunto:'Trabalho', link:1},
-    {id:'G2023R4O9U2P19I30D38C115T', grupo:'Desenvolvimento', assunto:'Trabalho', link:1},
+    {id:'U2023S4O9E2R19I30D38C109T', nome:'Marcos', email:'marcosmg@gmail.com', link:1},
+    {id:'U2023S4O9E2R19I30D38C109T', nome:'Felipe', email:'felipesm@gmail.com', link:1},
+    {id:'U2023S4O9E2R19I30D38C109T', nome:'Marina', email:'marinarij@gmail.com', link:1},
+    {id:'U2023S4O9E2R19I30D38C109T', nome:'Jóice', email:'jojotto@gmail.com', link:1},
+    {id:'U2023S4O9E2R19I30D38C109T', nome:'Matheus', email:'matthokl@gmail.com', link:1},
+    {id:'U2023S4O9E2R19I30D38C109T', nome:'Karine', email:'karinebr20@gmail.com', link:1},
+    {id:'U2023S4O9E2R19I30D38C109T', nome:'Flávia', email:'flafla2088@gmail.com', link:1},
 ];
 
 function GroupsUsers() {
@@ -39,8 +39,8 @@ function GroupsUsers() {
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>GRUPO</th>
-                            <th>ASSUNTO</th>
+                            <th>NOME</th>
+                            <th>E-MAIL</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -49,8 +49,8 @@ function GroupsUsers() {
                             return (
                                     <tr>
                                         <td>{item.id}</td>
-                                        <td>{item.grupo}</td>
-                                        <td>{item.assunto}</td>
+                                        <td>{item.nome}</td>
+                                        <td>{item.email}</td>
                                         <td align='center'>
                                             <Button variant='danger' as={NavLink} to={item.link}>Remover</Button>
                                         </td>

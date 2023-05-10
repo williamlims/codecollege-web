@@ -142,6 +142,12 @@ function UserEdit() {
                         <Button variant="dark" onClick={() => setCmShow(false)} className='mt-2 m-3'>OK</Button>
                     </Modal.Body>
                 </Modal>
+                <Form.Group className="mb-3 mt-2" controlId="controlId">
+                        <Form.Control type="text" disabled value={`U2023S4E10R3I10D48C21T711`}/>
+                        <Form.Text style={style.conrtolIDColor}>
+                            Este é o ID de controle de usuário!
+                        </Form.Text>
+                    </Form.Group>
                 <Form.Group className="mb-3 mt-2" controlId="name">
                     <Form.Control type="text" onInput={() => backToStartName()} style={style.nameColor} placeholder="Nome do usuário" />
                     <Form.Text style={style.nameColor}>
