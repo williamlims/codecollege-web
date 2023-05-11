@@ -1,13 +1,24 @@
-import * as React from 'react';
+import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Chart from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
+import api from "../../../services/api";
+
+let dados;
+    
+api.get('/v1/users/1').then(function (response){
+    dados = response.data;
+});
 
 
 function Dashboard() {
-
+    //let [dados, setDados] = useEffect({});
+    //useEffect(() => {
+    //    setDados(() => api.get("/v1/users/1"));
+    //});
+   
     const labels = ["January", "February", "March", "April", "May", "June"];
     const data = {
         labels: labels,
@@ -35,6 +46,10 @@ function Dashboard() {
                             <Bar data={data} />
                         </div>
                     </Col>
+                </Row>
+                <Row>
+                    {dados.firstName}
+                    {dados.lastName}
                 </Row>
             </Container>
         </>

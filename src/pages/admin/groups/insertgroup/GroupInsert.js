@@ -75,55 +75,28 @@ function GroupInsert() {
             <Container fluid className='p-2 shadow-sm'>
                 <Form as={Col} xl={8} lg={12} md={12} sm={12} es={12}>
                     <Form.Group className="mb-3">
-                        <Form.Select id="levelCourse" style={style.levelCourseColor}>
+                        <Form.Select id="optionGroup" style={style.levelCourseColor}>
                             <option>----------</option>
                             <option value={1}>Usuário</option>
-                            <option value={2}>Intermediário</option>
-                            <option value={3}>Avançado</option>
-                            <option value={4}>Especialista</option>
+                            <option value={2}>Curso</option>
+                            <option value={3}>Tutorial</option>
+                            <option value={4}>Aula Livre</option>
+                            <option value={5}>Biblioteca</option>
                         </Form.Select>
                         <Form.Text style={style.levelCourseColor}>
                             {`Por favor, escolha a opção a ser inserida no grupo!`}
                         </Form.Text>
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="nameCourse">
-                        <Form.Control type="text" onInput={() => backToStartNameCourse()} style={style.nameCourseColor} placeholder="Nome do curso" />
+                    <Form.Group className="mb-3" controlId="itemID">
+                        <Form.Control type="text" onInput={() => backToStartNameCourse()} style={style.nameCourseColor} placeholder="Ex: I2023T4E9M2I19D30C38H109O" />
                         <Form.Text style={style.nameCourseColor}>
-                            {infonameCourse}
+                            {`Por favor, insira aqui o ID do item escolhido!`}
                         </Form.Text>
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="descriptionCourse">
-                        <Form.Control as="textarea" style={style.descriptionCourseColor} rows={3} />
-                        <Form.Text style={style.descriptionCourseColor}>
-                            {infodescriptionCourse}
-                        </Form.Text>
-                    </Form.Group>
-                    <Form.Group className="mb-3">
-                        <Form.Select id="levelCourse" style={style.levelCourseColor}>
-                            <option>----------</option>
-                            <option value={1}>Iniciante</option>
-                            <option value={2}>Intermediário</option>
-                            <option value={3}>Avançado</option>
-                            <option value={4}>Especialista</option>
-                        </Form.Select>
-                        <Form.Text style={style.levelCourseColor}>
-                            {`Por favor, escolha o nível do curso!`}
-                        </Form.Text>
-                    </Form.Group>
-                    <Form.Group className="mb-4">
-                        <Form.Select id="areaCourse" style={style.areaCourseColor}>
-                            <option>----------</option>
-                            <option value={1}>Ciências Exatas e da Terra</option>
-                            <option value={2}>Ciências Biológicas</option>
-                            <option value={3}>Engenharias</option>
-                            <option value={4}>Ciências da Saúde</option>
-                            <option value={5}>Ciências Agrárias</option>
-                            <option value={6}>Linguística, Letras e Artes</option>
-                            <option value={7}>Ciências Sociais Aplicadas</option>
-                            <option value={8}>Ciências Humanas</option>
-                        </Form.Select>
-                        <Form.Text style={style.areaCourseColor}>
-                            {`Por favor, escolha a área do curso!`}
+                    <Form.Group className="mb-3" controlId="itemID">
+                        <Form.Control type="text" onInput={() => backToStartNameCourse()} style={style.nameCourseColor} placeholder="Ex: G2023R4O9U2P19I30D38C109T" />
+                        <Form.Text style={style.nameCourseColor}>
+                            {`Por favor, insira aqui o ID do GRUPO!`}
                         </Form.Text>
                     </Form.Group>
                     <Row className="mb-4">
