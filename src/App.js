@@ -15,6 +15,7 @@ import Classes from './pages/home/classes/Classes';
 import ClassFree from './pages/home/classes/classFree/ClassFree';
 import Library from './pages/home/library/Library';
 import Certificates from './pages/home/certificates/Certificates';
+import Print from './pages/home/certificates/print/Print';
 import Performance from './pages/home/performance/Performance';
 import Preferences from './pages/home/preferences/Preferences';
 import Account from './pages/home/preferences/account/Account';
@@ -68,6 +69,7 @@ function App() {
           <Route path="home/classes/:id" element={<ClassFree />} />
           <Route path="home/library" element={<Library />} />
           <Route path="home/certificates" element={<Certificates />} />
+          <Route path="home/certificates/print/:id" element={<Print />} />
           <Route path="home/performance" element={<Performance />} />
           <Route path="home/preferences" element={<Preferences />} />
           <Route path="home/preferences/account" element={<Account />} />

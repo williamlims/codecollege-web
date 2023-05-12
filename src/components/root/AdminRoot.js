@@ -20,6 +20,59 @@ import { BsFillPersonFill,
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 import { Outlet, useLocation }from "react-router-dom";
 import "../../styles/style.css";
+import { jsPDF } from "jspdf";
+
+const printUserReport = () => {
+    const doc = new jsPDF();
+    doc.setFont("times", "bold");
+    doc.setFontSize(16);
+    doc.text("RELATÓRIO DE USUÁRIOS", 15, 15);
+    doc.setFontSize(12);
+    doc.text("ID", 15, 25);
+    doc.text("| NOME", 70, 25);
+    doc.text("| EMAIL", 105, 25);
+    doc.text("| DATA INSCRIÇÃO", 155, 25);
+    doc.setFont("times", "normal");
+    doc.setFontSize(10);
+
+    for(let i = 30; i<280; i=i+5){ //TESTE apenas 50 linhas e mudar pra proxima pagina
+    doc.text(("U2023S4E11R4I14D21C6T777").substring(0,30), 15, i);
+    doc.text(("  Marcos Eduardo Faria").substring(0,21), 70, i);
+    doc.text(("  marcosfg2895@gmail.com").substring(0,28), 105, i);
+    doc.text("  11/05/2023", 155, i);
+    }
+    doc.addPage(1)
+    doc.text("Hello world! 2", 50, 50);
+    doc.addPage(2)
+    doc.text("Hello world! 3", 5000, 50);
+    doc.save("user-report.pdf");
+};
+
+const printCourseReport = () => {
+    const doc = new jsPDF();
+    doc.setFont("times", "bold");
+    doc.setFontSize(16);
+    doc.text("RELATÓRIO DE CURSOS", 15, 15);
+    doc.setFontSize(12);
+    doc.text("ID", 15, 25);
+    doc.text("| CURSO", 70, 25);
+    doc.text("| NÍVEL", 120, 25);
+    doc.text("| ÁREA", 155, 25);
+    doc.setFont("times", "normal");
+    doc.setFontSize(10);
+
+    for(let i = 30; i<280; i=i+5){ //TESTE apenas 50 linhas e mudar pra proxima pagina
+    doc.text(("C2023O4U9R2S10E4I44D78").substring(0,30), 15, i);
+    doc.text(("  Lógica de Programação").substring(0,30), 70, i);
+    doc.text(("  Intermediário").substring(0,28), 120, i);
+    doc.text("  Ciências Exatas e da Terra", 155, i);
+    }
+    doc.addPage(1)
+    doc.text("Hello world! 2", 50, 50);
+    doc.addPage(2)
+    doc.text("Hello world! 3", 5000, 50);
+    doc.save("user-report.pdf");
+};
 
 const verifyTitle = (pathname) => {
     if (pathname === '/admin/home/dashboard'){
@@ -140,11 +193,8 @@ function AdminRoot(props) {
                         <MenuItem rootStyles={style.subMenu} onClick={() => setTitle("Inserir no Grupo")} component={<Link to="/admin/home/groups/insert" />}> Inserir no Grupo </MenuItem>
                     </SubMenu>
                     <SubMenu icon={<BsFiletypePdf />} label="Relatório">
-                        <MenuItem rootStyles={style.subMenu} icon={<BsDownload />} onClick={() => alert("Mudar!")}> Usuários </MenuItem>
-                        <MenuItem rootStyles={style.subMenu} icon={<BsDownload />} onClick={() => alert("Mudar!")}> Cursos </MenuItem>
-                        <MenuItem rootStyles={style.subMenu} icon={<BsDownload />} onClick={() => alert("Mudar!")}> Aulas </MenuItem>
-                        <MenuItem rootStyles={style.subMenu} icon={<BsDownload />} onClick={() => alert("Mudar!")}> Documentos </MenuItem>
-                        <MenuItem rootStyles={style.subMenu} icon={<BsDownload />} onClick={() => alert("Mudar!")}> Grupos </MenuItem>
+                        <MenuItem rootStyles={style.subMenu} icon={<BsDownload />} onClick={() => printUserReport()}> Usuários </MenuItem>
+                        <MenuItem rootStyles={style.subMenu} icon={<BsDownload />} onClick={() => printCourseReport()}> Cursos </MenuItem>
                     </SubMenu>
                 </Menu>
             </Sidebar>

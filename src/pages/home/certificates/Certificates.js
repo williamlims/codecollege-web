@@ -11,6 +11,7 @@ import NavMain from '../../../components/navMain/NavMain';
 import Footer from '../../../components/footer/Footer';
 import Button from 'react-bootstrap/Button';
 import { BsFillCloudArrowDownFill } from "react-icons/bs";
+import Print from './print/Print';
 
 function Certificates() {
     const path = { 
@@ -33,7 +34,7 @@ function Certificates() {
                         <div style={{fontFamily:'Arial', fontSize:18, alignContent:'center'}}>Programação em Javascript</div>
                     </Col>
                     <Col className='d-flex justify-content-end align-self-center'>
-                        <Button size="md" href="https://www.google.com" target='_blank' style={{maxHeight:40}}><BsFillCloudArrowDownFill /> Baixar</Button>
+                        <Button size="md" href="/home/certificates/print/5" target='_blank' style={{maxHeight:40}}><BsFillCloudArrowDownFill /> Baixar</Button>
                     </Col>       
                 </Row>
             </>

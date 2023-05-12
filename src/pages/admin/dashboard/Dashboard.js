@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -6,18 +6,25 @@ import Chart from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
 import api from "../../../services/api";
 
-let dados;
-    
-api.get('/v1/users/1').then(function (response){
-    dados = response.data;
-});
+//let dados = "";
 
+//api.get('/v1/users/1').then(function (response){
+   // dados = response.data;
+//});
+
+
+
+//const dados = getUser();
+//const dados = getUser();
 
 function Dashboard() {
-    //let [dados, setDados] = useEffect({});
-    //useEffect(() => {
-    //    setDados(() => api.get("/v1/users/1"));
-    //});
+    const [name, setName] = useState('');
+    
+    api.get('/v1/users/1').then(res => {
+        setName(res.data.firstName)
+    }).catch(error => {
+        alert(error);
+    });
    
     const labels = ["January", "February", "March", "April", "May", "June"];
     const data = {
@@ -47,9 +54,8 @@ function Dashboard() {
                         </div>
                     </Col>
                 </Row>
-                <Row>
-                    {dados.firstName}
-                    {dados.lastName}
+                <Row className='bg-primary w-100'>
+                    {name ? name : ""}
                 </Row>
             </Container>
         </>
