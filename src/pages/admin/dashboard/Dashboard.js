@@ -1,21 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Chart from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
 import api from "../../../services/api";
-
-//let dados = "";
-
-//api.get('/v1/users/1').then(function (response){
-   // dados = response.data;
-//});
-
-
-
-//const dados = getUser();
-//const dados = getUser();
 
 function Dashboard() {
     const [name, setName] = useState('');

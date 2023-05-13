@@ -7,6 +7,8 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import InputGroup from 'react-bootstrap/InputGroup'
 import { BsFillEyeSlashFill } from "react-icons/bs";
+import { NavLink } from 'react-router-dom';
+import api from "../../../../services/api";
 
 function UserRegister() {
     const [cmShow, setCmShow] = useState(false);
@@ -23,6 +25,36 @@ function UserRegister() {
     const [infopass2Color, setInfopass2Color] = useState("gray");
     const [infolevel, setInfolevel] = useState("Por favor, insira o nível de acesso do usuário!");
     const [infolevelColor, setInfolevelColor] = useState("gray");
+
+    const saveUser = () => {
+        
+        let idControl = document.getElementById("controlId").value;
+        let firstName = document.getElementById("name").value;
+        let lastName = document.getElementById("surname").value;
+        let email = document.getElementById("email").value;
+        let birthday = document.getElementById("date").value;
+        let password = document.getElementById("password").value;
+        let levelUser = document.getElementById("levelUser").value;
+        let googleAccount = false;
+        let photo = "nada";
+
+        api.post('/v1/users/', {
+            idControl: idControl,
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            birthday: birthday,
+            password: password,
+            levelUser: levelUser,
+            googleAccount: googleAccount,
+            photo: photo
+        }).then(res => {
+            return res.status;
+        }).catch(error => {
+            return error;
+        });
+
+    };
 
     const returnID = () => {
         const date = new Date();
@@ -88,44 +120,53 @@ function UserRegister() {
     }
 
     const submitValidate = () => {
-        let name = document.getElementById("name").value;
-        let surname = document.getElementById("surname").value;
-        let date = document.getElementById("date").value;
-        let email = document.getElementById("email").value;
-        let password = document.getElementById("password").value;
-        let password2 = document.getElementById("password2").value;
-        let levelUser = document.getElementById("levelUser").value;
+        let idControl = document.getElementById("controlId");
+        let name = document.getElementById("name");
+        let surname = document.getElementById("surname");
+        let date = document.getElementById("date");
+        let email = document.getElementById("email");
+        let password = document.getElementById("password");
+        let password2 = document.getElementById("password2");
+        let levelUser = document.getElementById("levelUser");
         
-        if (name === ""){
+        if (name.value === ""){
             setInfoname("Você esqueceu de inserir o nome do usuário!");
             setInfonameColor("red");
-        } else if (surname === ""){
+        } else if (surname.value === ""){
             setInfosurname("Você esqueceu de inserir o sobrenome do usuário!");
             setInfosurnameColor("red");
-        } else if (date === ""){
+        } else if (date.value === ""){
             setInfodate("Você esqueceu de inserir a data de aniversário do usuário!");
             setInfodateColor("red");
-        } else if (email === ""){
+        } else if (email.value === ""){
             setInfoemail("Você esqueceu de inserir o email do usuário!");
             setInfoemailColor("red");
-        } else if (password === ""){
+        } else if (password.value === ""){
             setInfopass("Você esqueceu de inserir a senha do usuário!");
             setInfopassColor("red");
-        } else if (password2 === ""){
+        } else if (password2.value === ""){
             setInfopass("Você esqueceu de repetir a senha do usuário!");
             setInfopassColor("red");
             setInfopass2Color("red");
-        } else if (password !== password2){
+        } else if (password.value !== password2.value){
             setInfopass("As senhas não batem!");
             setInfopassColor("red");
             setInfopass2Color("red");
-        } else if (levelUser === "----------"){
+        } else if (levelUser.value === "----------"){
             setInfolevel("Você esqueceu de inserir o nível do usuário!");
             setInfolevelColor("red");
         } else {
-            // set the database tasks here
+            saveUser();
             clearForm();
             setCmShow(true);
+            idControl.value = returnID();
+            name.value = "";
+            surname.value = "";
+            date.value = "";
+            email.value = "";
+            password.value = "";
+            password2.value = "";
+            levelUser.value = "----------";
         }
         
     };
@@ -145,8 +186,8 @@ function UserRegister() {
                     </Modal.Title>
                     </Modal.Header>
                     <Modal.Body className='d-flex flex-column justify-content-center'>
-                        <p> O usuário foi salvo com sucesso!</p>
-                        <Button variant="dark" onClick={() => setCmShow(false)} className='mt-2 m-3'>OK</Button>
+                        <p>Usuário salvo com sucesso!</p>
+                        <Button variant="dark" onClick={() => {setCmShow(false)}} className='mt-2 m-3'>OK</Button>
                     </Modal.Body>
                 </Modal>
                 <Form>

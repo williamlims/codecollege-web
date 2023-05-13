@@ -1,46 +1,48 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import { NavLink } from 'react-router-dom';
-
-const dadosTeste = [
-    {id:1, nome:'Marcos', email:'marcosnet@gmail.com', usuario:'usuário', link:'/admin/home/users/edit/1'},
-    {id:2, nome:'André', email:'andrefaria@gmail.com', usuario:'usuário', link:'/admin/home/users/edit/2'},
-    {id:3, nome:'Marta', email:'mmt2055@gmail.com', usuario:'usuário', link:'/admin/home/users/edit/3'},
-    {id:4, nome:'Rita', email:'ritalia55@gmail.com', usuario:'usuário', link:'/admin/home/users/edit/4'},
-    {id:5, nome:'Andreia', email:'andriafot@gmail.com', usuario:'usuário', link:'/admin/home/users/edit/5'},
-    {id:6, nome:'Fernanda', email:'fernuut@gmail.com', usuario:'usuário', link:'/admin/home/users/edit/6'},
-    {id:7, nome:'Renata', email:'renatinha87@gmail.com', usuario:'usuário', link:'/admin/home/users/edit/7'},
-];
+import api from "../../../services/api";
 
 function Users() {
+    const [user, setUser] = useState([]);
+
+    useEffect(() => {
+        api.get('/v1/users/').then(res => {
+            return setUser(res.data);
+            //setFirstName(res.data.firstName);
+        }).catch(error => {
+            alert(error);
+        });
+    }, []);
+
     return (
         <>
             <Container fluid className='py-1 px-2 shadow-sm'>
                 <Table striped bordered hover>
                     <thead>
                         <tr>
-                            <th>id</th>
-                            <th>Nome</th>
-                            <th>E-mail</th>
-                            <th>Nível de Acesso</th>
+                            <th>ID</th>
+                            <th>NOME</th>
+                            <th>E-MAIL</th>
+                            <th>NÍVEL DE ACESSO</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        {dadosTeste.map( (item) => {
+                        {user.length > 0 ? user.map( (item, index) => {
                             return (
-                                    <tr>
-                                        <td>{item.id}</td>
-                                        <td>{item.nome}</td>
+                                    <tr key={index}>
+                                        <td>{item.idControl}</td>
+                                        <td>{item.firstName}</td>
                                         <td>{item.email}</td>
-                                        <td>{item.usuario}</td>
-                                        <td align='center'><Button variant='dark' as={NavLink} to={item.link}>Editar</Button></td>
+                                        <td>{item.levelUser === 1 ? 'Usuário': 'Administrador'}</td>
+                                        <td align='center'><Button variant='dark' as={NavLink} to={`/admin/home/users/edit/${item.idControl}`}>Editar</Button></td>
                                     </tr>
                                 );
                             }
-                        )}
+                        ): <h5>Nenhum registro encontrado!</h5>}
                     </tbody>
                 </Table>
             </Container>
