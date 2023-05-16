@@ -11,7 +11,6 @@ function Users() {
     useEffect(() => {
         api.get('/v1/users/').then(res => {
             return setUser(res.data);
-            //setFirstName(res.data.firstName);
         }).catch(error => {
             alert(error);
         });

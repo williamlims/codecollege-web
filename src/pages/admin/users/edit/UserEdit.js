@@ -172,8 +172,7 @@ function UserEdit() {
             updateUser();
             clearForm();
             setCmShow(true);
-        }
-        
+        }     
     };
 
     return (

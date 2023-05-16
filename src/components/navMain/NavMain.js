@@ -54,7 +54,7 @@ function NavMain(props) {
     }
     return (
         <>
-            <Navbar expand="md sm" as={Col} bg="light" style={{margin:-8}} >
+            <Navbar expand="md sm" as={Col} bg="light" style={{margin:0}} >
                 <Container>
                     <Navbar.Brand href="#">
                         <img src={logo} width="30" height="30" className="d-inline-block align-top" alt="Logo" />

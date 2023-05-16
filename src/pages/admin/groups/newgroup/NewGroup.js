@@ -74,56 +74,33 @@ function NewGroup() {
         <>
             <Container fluid className='p-2 shadow-sm'>
                 <Form as={Col} xl={8} lg={12} md={12} sm={12} es={12}>
-                    <Form.Group className="mb-3 mt-2" controlId="controlIdFreeClass">
+                    <Form.Group className="mb-3 mt-2" controlId="controlIdGroup">
                         <Form.Control type="text" disabled value={returnID()}/>
                         <Form.Text style={style.conrtolIDColor}>
-                            {`Este é o ID de controle da aula!`}
+                            {`Este é o ID de controle do Grupo!`}
                         </Form.Text>
                     </Form.Group>
-                    <Form.Group className="mb-3 mt-2" controlId="linkYoutubeFree">
-                        <Form.Control type="text" placeholder="https://www.youtube.com/..."/>
-                        <Form.Text style={style.conrtolIDColor}>
-                            {`Insira aqui o link do vídeo!`}
-                        </Form.Text>
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="nameFreeClass">
-                        <Form.Control type="text" onInput={() => backToStartNameCourse()} style={style.nameCourseColor} placeholder="Nome da aula" />
+                    <Form.Group className="mb-3" controlId="nameGroup">
+                        <Form.Control type="text" onInput={() => backToStartNameCourse()} style={style.nameCourseColor} placeholder="Nome da grupo" />
                         <Form.Text style={style.nameCourseColor}>
                             {infonameCourse}
                         </Form.Text>
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="descriptionFreeClass">
+                    <Form.Group className="mb-3">
+                        <Form.Select id="subjectGroup" style={style.levelCourseColor}>
+                            <option>----------</option>
+                            <option value={`Trabalho`}>Trabalho</option>
+                            <option value={`Estudo`}>Estudo</option>
+                            <option value={`Outro`}>Outro</option>
+                        </Form.Select>
+                        <Form.Text style={style.levelCourseColor}>
+                            {`Por favor, escolha o assunto do grupo!`}
+                        </Form.Text>
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="descriptionGroup">
                         <Form.Control as="textarea" style={style.descriptionCourseColor} rows={3} />
                         <Form.Text style={style.descriptionCourseColor}>
                             {infodescriptionCourse}
-                        </Form.Text>
-                    </Form.Group>
-                    <Form.Group className="mb-3">
-                        <Form.Select id="levelFreeClass" style={style.levelCourseColor}>
-                            <option>----------</option>
-                            <option value={1}>Iniciante</option>
-                            <option value={2}>Intermediário</option>
-                            <option value={3}>Avançado</option>
-                            <option value={4}>Especialista</option>
-                        </Form.Select>
-                        <Form.Text style={style.levelCourseColor}>
-                            {`Por favor, escolha o nível desta aula!`}
-                        </Form.Text>
-                    </Form.Group>
-                    <Form.Group className="mb-4">
-                        <Form.Select id="freeClassSubject" style={style.areaCourseColor}>
-                            <option>----------</option>
-                            <option value={1}>Tecnologia</option>
-                            <option value={2}>Administração</option>
-                            <option value={3}>Contabilidade</option>
-                            <option value={4}>Finanças</option>
-                            <option value={5}>Indústria</option>
-                            <option value={6}>Medicina</option>
-                            <option value={7}>Comunicação</option>
-                            <option value={8}>Outro</option>
-                        </Form.Select>
-                        <Form.Text style={style.areaCourseColor}>
-                            {`Por favor, escolha o assunto desta aula!`}
                         </Form.Text>
                     </Form.Group>
                     <Row className="mb-4">

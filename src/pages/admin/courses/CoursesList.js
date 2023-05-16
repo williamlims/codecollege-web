@@ -1,20 +1,59 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import { NavLink } from 'react-router-dom';
-
-const dadosTeste = [
-    {id:'C2023O4U9R2S10E4I44D78', curso:'Programação Java', nivel:'Iniciante', area:'Ciências Exatas e da Terra', link:'/admin/home/courses/edit/1'},
-    {id:'C2023O4U9R3S10E4I44D79', curso:'Lógica de Programação', nivel:'Iniciante', area:'Ciências Exatas e da Terra', link:'/admin/home/courses/edit/2'},
-    {id:'C2023O4U9R4S10E4I44D80', curso:'Negócios', nivel:'Iniciante', area:'Ciências Sociais Aplicadas', link:'/admin/home/users/courses/3'},
-    {id:'C2023O4U9R5S10E4I44D81', curso:'Marketing', nivel:'Iniciante', area:'Ciências Sociais Aplicadas', link:'/admin/home/users/courses/4'},
-    {id:'C2023O4U9R6S10E4I44D82', curso:'Inglês Instrumental', nivel:'Avançado', area:'Linguística, Letras e Artes', link:'/admin/home/courses/edit/5'},
-    {id:'C2023O4U9R7S10E4I44D83', curso:'Regras de Negócios', nivel:'Especialista', area:'Ciências Sociais Aplicadas', link:'/admin/home/courses/edit/6'},
-    {id:'C2023O4U9R8S10E4I44D84', curso:'Data Science', nivel:'Intermediário', area:'Ciências Exatas e da Terra', link:'/admin/home/courses/edit/7'},
-];
+import api from "../../../services/api";
 
 function CourseList() {
+    const [course, setCourse] = useState([]);
+
+    useEffect(() => {
+        api.get('/v1/courses/').then(res => {
+            return setCourse(res.data);
+        }).catch(error => {
+            alert(error);
+        });
+    }, []);
+
+    const renderSwitchLevel = (level) => {
+        switch(level) {
+            case 1:
+                return 'Iniciante';
+            case 2:
+                return 'Intermediário';
+            case 3:
+                return 'Avançado';
+            case 4:
+                return 'Especialista';
+            default:
+                return 'Error';
+        }
+    }
+
+    const renderSwitchArea = (area) => {
+        switch(area) {
+            case 1:
+                return 'Ciências Exatas e da Terra';
+            case 2:
+                return 'Ciências Biológicas';
+            case 3:
+                return 'Engenharias';
+            case 4:
+                return 'Ciências da Saúde';
+            case 5:
+                return 'Ciências Agrárias';
+            case 6:
+                return 'Linguística, Letras e Artes';
+            case 7:
+                return 'Ciências Sociais Aplicadas';
+            case 8:
+                return 'Ciências Humanas';
+            default:
+                return 'Error';
+        }
+    }
+
     return (
         <>
             <Container fluid className='p-2 shadow-sm'>
@@ -29,18 +68,18 @@ function CourseList() {
                         </tr>
                     </thead>
                     <tbody>
-                        {dadosTeste.map( (item) => {
+                        {course.length > 0 ? course.map( (item, index) => {
                             return (
                                     <tr>
-                                        <td>{item.id}</td>
-                                        <td>{item.curso}</td>
-                                        <td>{item.nivel}</td>
-                                        <td>{item.area}</td>
-                                        <td align='center'><Button variant='dark' as={NavLink} to={item.link}>Editar</Button></td>
+                                        <td>{item.idControl}</td>
+                                        <td>{item.nameCourse}</td>
+                                        <td>{renderSwitchLevel(item.level)}</td>
+                                        <td>{renderSwitchArea(item.area)}</td>
+                                        <td align='center'><Button variant='dark' as={NavLink} to={`/admin/home/courses/edit/${item.idControl}`}>Editar</Button></td>
                                     </tr>
                                 );
                             }
-                        )}
+                        ): <h5>Nenhum registro encontrado!</h5>}
                     </tbody>
                 </Table>
             </Container>
