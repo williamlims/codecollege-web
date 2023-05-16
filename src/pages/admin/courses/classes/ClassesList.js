@@ -1,8 +1,9 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import { NavLink } from 'react-router-dom';
+import api from "../../../../services/api";
 
 const dadosTeste = [
     {id:'C2023L4A9S2S10E4S44S78', aula:'Introdução', modulo:'1', curso:'Programação Java', link:'/admin/home/courses/classes/edit/1'},
@@ -15,6 +16,24 @@ const dadosTeste = [
 ];
 
 function ClassesList() {
+    const [classes, setClasses] = useState([]);
+
+    useEffect(() => {
+        api.get('/v1/classes/').then(res => {
+            return setClasses(res.data);
+        }).catch(error => {
+            alert(error);
+        });
+    }, []);
+
+    let getCourseName = (id) => {
+        api.get(`/v1/courses/${id}`).then(res => {
+            return res.data.nameCourse;
+        }).catch(error => {
+            return error;
+        });
+    };
+
     return (
         <>
             <Container fluid className='p-2 shadow-sm'>
@@ -29,18 +48,18 @@ function ClassesList() {
                         </tr>
                     </thead>
                     <tbody>
-                        {dadosTeste.map( (item) => {
+                        {classes.length > 0 ? classes.map( (item, index) => {
                             return (
                                     <tr>
-                                        <td>{item.id}</td>
-                                        <td>{item.aula}</td>
-                                        <td>{item.modulo}</td>
-                                        <td>{item.curso}</td>
+                                        <td>{item.idControl}</td>
+                                        <td>{item.nameClass}</td>
+                                        <td>{item.moduleControl}</td>
+                                        <td>{(getCourseName(item.idCourseControl))}</td>
                                         <td align='center'><Button variant='dark' as={NavLink} to={item.link}>Editar</Button></td>
                                     </tr>
                                 );
                             }
-                        )}
+                        ): <h5>Nenhum registro encontrado!</h5>}
                     </tbody>
                 </Table>
             </Container>
