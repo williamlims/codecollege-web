@@ -45,9 +45,9 @@ function GroupsDocuments() {
                         </tr>
                     </thead>
                     <tbody>
-                        {dadosTeste.map( (item) => {
+                        {dadosTeste.map( (item, index) => {
                             return (
-                                    <tr>
+                                    <tr key={index}>
                                         <td>{item.id}</td>
                                         <td>{item.documento}</td>
                                         <td>{item.assunto}</td>

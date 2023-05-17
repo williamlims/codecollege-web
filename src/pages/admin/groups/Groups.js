@@ -31,9 +31,9 @@ function Groups() {
                     </thead>
                     <tbody>
                         
-                        {dadosTeste.map( (item) => {
+                        {dadosTeste.map( (item, index) => {
                             return (
-                                    <tr>
+                                    <tr key={index}>
                                         <td>{item.id}</td>
                                         <td>{item.grupo}</td>
                                         <td>{item.assunto}</td>

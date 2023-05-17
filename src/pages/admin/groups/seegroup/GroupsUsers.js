@@ -45,9 +45,9 @@ function GroupsUsers() {
                         </tr>
                     </thead>
                     <tbody>
-                        {dadosTeste.map( (item) => {
+                        {dadosTeste.map( (item, index) => {
                             return (
-                                    <tr>
+                                    <tr key={index}>
                                         <td>{item.id}</td>
                                         <td>{item.nome}</td>
                                         <td>{item.email}</td>

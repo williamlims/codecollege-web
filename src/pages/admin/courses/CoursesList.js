@@ -70,7 +70,7 @@ function CourseList() {
                     <tbody>
                         {course.length > 0 ? course.map( (item, index) => {
                             return (
-                                    <tr>
+                                    <tr key={index}>
                                         <td>{item.idControl}</td>
                                         <td>{item.nameCourse}</td>
                                         <td>{renderSwitchLevel(item.level)}</td>
@@ -79,7 +79,7 @@ function CourseList() {
                                     </tr>
                                 );
                             }
-                        ): <h5>Nenhum registro encontrado!</h5>}
+                        ): <tr style={{fontFamily: 'Arial Black', fontSize: 14}}><td  colSpan="5">Nenhum registro encontrado!</td></tr>}
                     </tbody>
                 </Table>
             </Container>

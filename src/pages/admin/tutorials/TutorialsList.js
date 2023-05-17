@@ -1,20 +1,59 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import { NavLink } from 'react-router-dom';
-
-const dadosTeste = [
-    {id:'T2023U4T9O2R10I4A44L78', tutorial:'Programação Java', nivel:'Iniciante', assunto:'Tecnologia', link:'/admin/home/tutorials/edit/1'},
-    {id:'T2023U4T9O2R10I4A44L79', tutorial:'Lógica de Programação', nivel:'Iniciante', assunto:'Tecnologia', link:'/admin/home/tutorials/edit/2'},
-    {id:'T2023U4T9O2R10I4A44L80', tutorial:'Negócios', nivel:'Iniciante', assunto:'Tecnologia', link:'/admin/home/tutorials/edit/3'},
-    {id:'T2023U4T9O2R10I4A44L81', tutorial:'Marketing', nivel:'Iniciante', assunto:'Tecnologia', link:'/admin/home/tutorials/edit/4'},
-    {id:'T2023U4T9O2R10I4A44L82', tutorial:'Inglês Instrumental', nivel:'Iniciante', assunto:'Tecnologia', link:'/admin/home/tutorials/edit/5'},
-    {id:'T2023U4T9O2R10I4A44L83', tutorial:'Regras de Negócios', nivel:'Iniciante', assunto:'Tecnologia', link:'/admin/home/tutorials/edit/6'},
-    {id:'T2023U4T9O2R10I4A44L84', tutorial:'Data Science', nivel:'Iniciante', assunto:'Tecnologia', link:'/admin/home/tutorials/edit/7'},
-];
+import api from "../../../services/api";
 
 function TutorialsList() {
+    const [tutorial, setTutorial] = useState([]);
+
+    useEffect(() => {
+        api.get('/v1/tutorials/').then(res => {
+            return setTutorial(res.data);
+        }).catch(error => {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+            alert(error);
+        });
+    }, []);
+
+    const renderSwitchLevel = (level) => {
+        switch(level) {
+            case 1:
+                return 'Iniciante';
+            case 2:
+                return 'Intermediário';
+            case 3:
+                return 'Avançado';
+            case 4:
+                return 'Especialista';
+            default:
+                return 'Error';
+        }
+    }
+
+    const renderSwitchSubject = (subject) => {
+        switch(subject) {
+            case 1:
+                return 'Tecnologia';
+            case 2:
+                return 'Administração';
+            case 3:
+                return 'Contabilidade';
+            case 4:
+                return 'Finanças';
+            case 5:
+                return 'Indústria';
+            case 6:
+                return 'Medicina';
+            case 7:
+                return 'Comunicação';
+            case 8:
+                return 'Outro';
+            default:
+                return 'Error';
+        }
+    }
+
     return (
         <>
             <Container fluid className='p-2 shadow-sm'>
@@ -29,18 +68,18 @@ function TutorialsList() {
                         </tr>
                     </thead>
                     <tbody>
-                        {dadosTeste.map( (item) => {
+                        {tutorial.length > 0 ? tutorial.map( (item, index) => {
                             return (
-                                    <tr>
-                                        <td>{item.id}</td>
-                                        <td>{item.tutorial}</td>
-                                        <td>{item.nivel}</td>
-                                        <td>{item.assunto}</td>
-                                        <td align='center'><Button variant='dark' as={NavLink} to={item.link}>Editar</Button></td>
+                                    <tr key={index}>
+                                        <td>{item.idControl}</td>
+                                        <td>{item.nameTutorial}</td>
+                                        <td>{renderSwitchLevel(item.level)}</td>
+                                        <td>{renderSwitchSubject(item.subject)}</td>
+                                        <td align='center'><Button variant='dark' as={NavLink} to={`/admin/home/tutorials/edit/${item.idControl}`}>Editar</Button></td>
                                     </tr>
                                 );
                             }
-                        )}
+                        ): <tr style={{fontFamily: 'Arial Black', fontSize: 14}}><td  colSpan="5">Nenhum registro encontrado!</td></tr>}
                     </tbody>
                 </Table>
             </Container>

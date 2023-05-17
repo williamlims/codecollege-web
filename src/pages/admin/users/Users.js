@@ -41,7 +41,7 @@ function Users() {
                                     </tr>
                                 );
                             }
-                        ): <h5>Nenhum registro encontrado!</h5>}
+                        ): <tr style={{fontFamily: 'Arial Black', fontSize: 14}}><td  colSpan="5">Nenhum registro encontrado!</td></tr>}
                     </tbody>
                 </Table>
             </Container>

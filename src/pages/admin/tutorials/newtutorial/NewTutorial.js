@@ -8,7 +8,6 @@ import Modal from 'react-bootstrap/Modal';
 import api from "../../../../services/api";
 
 function NewTutorial() {
-    const [file, setFile] = useState();
     const [cmShow, setCmShow] = useState(false);
     const [infotutorialName, setInfotutorialName] = useState("Por favor, insira o nome do tutorial!");
     const [infotutorialNameColor, setInfotutorialNameColor] = useState("gray");
@@ -18,7 +17,7 @@ function NewTutorial() {
     const [infolevelTutorialColor, setInfolevelTutorialColor] = useState("gray");
     const [infotutotialSubject, setInfotutotialSubject] = useState("Escolha o assunto do tutorial!");
     const [infotutotialSubjectColor, setInfotutotialSubjectColor] = useState("gray");
-
+  
     const style = {
         tutorial:{color:infotutorialNameColor, borderColor:infotutorialNameColor},
         file:{color:infofileDocumentColor, borderColor:infofileDocumentColor},
@@ -33,40 +32,26 @@ function NewTutorial() {
                    date.getMilliseconds());
     };
 
-    const saveFile = () => {
-        let formData = new FormData();
-        let doc = document.getElementById("fileDocument");
-        formData.append("fileDocument", doc.files[0]);
-        api.post('/v1/tutorials/file', formData, {
-            headers: {
-                "Content-Type": "multipart/form-data",
-            },
-        }).then((response) => {
-            if(response.status === 200){
-                setFile(response.data.message);
-            }
-        }).catch((error) => {
-            return error;
-        });
-    };
-
     const saveTutorial = () => {
+
+        let formData = new FormData();
+
+        let filedoc = document.getElementById("fileDocument");
         let controlIdTutorial = document.getElementById("controlIdTutorial").value;
         let tutorialName = document.getElementById("tutorialName").value;
         let levelTutorial = document.getElementById("levelTutorial").value;
         let tutotialSubject = document.getElementById("tutotialSubject").value;
-        let fnPath = document.getElementById("finalPath").value;
 
-        saveFile();
+        formData.append("idControl", controlIdTutorial);
+        formData.append("nameTutorial", tutorialName);
+        formData.append("level", levelTutorial);
+        formData.append("subject", tutotialSubject);
+        formData.append("fileDocument", filedoc.files[0]);
 
-        alert(fnPath);
-
-        api.post('/v1/tutorials/', {
-            idControl: controlIdTutorial,
-            nameTutorial: tutorialName,
-            level: levelTutorial,
-            subject: tutotialSubject,
-            filePath: fnPath
+        api.post('/v1/tutorials/', formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+           }
         }).then(res => {
             return res.status;
         }).catch(error => {
@@ -125,7 +110,6 @@ function NewTutorial() {
             saveTutorial();
             clearForm();
             setCmShow(true);
-            setFile('');
             controlIdTutorial.value = returnID();
             tutorialName.value = "";
             fileDocument.value = "";
@@ -168,7 +152,6 @@ function NewTutorial() {
                         </Form.Text>
                     </Form.Group>
                     <Form.Group className="mb-3 mt-2" name="fileDocument" controlId="fileDocument">
-                        <input type="hidden" id="finalPath" name="finalPath" value={file} />
                         <Form.Control type="file" name="fileDocument" placeholder="Envie o arquivo"/>
                         <Form.Text style={style.level}>
                             {infofileDocument}

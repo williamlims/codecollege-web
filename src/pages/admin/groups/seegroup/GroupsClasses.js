@@ -45,9 +45,9 @@ function GroupsClasses() {
                         </tr>
                     </thead>
                     <tbody>
-                        {dadosTeste.map( (item) => {
+                        {dadosTeste.map( (item, index) => {
                             return (
-                                    <tr>
+                                    <tr key={index}>
                                         <td>{item.id}</td>
                                         <td>{item.aula}</td>
                                         <td>{item.assunto}</td>

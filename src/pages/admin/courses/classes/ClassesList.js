@@ -50,16 +50,16 @@ function ClassesList() {
                     <tbody>
                         {classes.length > 0 ? classes.map( (item, index) => {
                             return (
-                                    <tr>
+                                    <tr key={index}>
                                         <td>{item.idControl}</td>
                                         <td>{item.nameClass}</td>
                                         <td>{item.moduleControl}</td>
                                         <td>{(getCourseName(item.idCourseControl))}</td>
-                                        <td align='center'><Button variant='dark' as={NavLink} to={item.link}>Editar</Button></td>
+                                        <td align='center'><Button variant='dark' as={NavLink} to={`/admin/home/courses/classes/edit/${item.idControl}`}>Editar</Button></td>
                                     </tr>
                                 );
                             }
-                        ): <h5>Nenhum registro encontrado!</h5>}
+                        ): <tr style={{fontFamily: 'Arial Black', fontSize: 14}}><td  colSpan="5">Nenhum registro encontrado!</td></tr>}
                     </tbody>
                 </Table>
             </Container>

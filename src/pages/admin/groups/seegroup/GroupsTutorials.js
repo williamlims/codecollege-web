@@ -45,9 +45,9 @@ function GroupsTutorials() {
                         </tr>
                     </thead>
                     <tbody>
-                        {dadosTeste.map( (item) => {
+                        {dadosTeste.map( (item, index) => {
                             return (
-                                    <tr>
+                                    <tr key={index}>
                                         <td>{item.id}</td>
                                         <td>{item.tutorial}</td>
                                         <td>{item.assunto}</td>
