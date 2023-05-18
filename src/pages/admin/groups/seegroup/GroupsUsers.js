@@ -1,37 +1,37 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import { NavLink } from 'react-router-dom';
-import SplitButton from 'react-bootstrap/SplitButton';
-import Dropdown from 'react-bootstrap/Dropdown';
 import Accordion from 'react-bootstrap/Accordion';
-
-const dadosTeste = [
-    {id:'U2023S4O9E2R19I30D38C109T', nome:'Marcos', email:'marcosmg@gmail.com', link:1},
-    {id:'U2023S4O9E2R19I30D38C109T', nome:'Felipe', email:'felipesm@gmail.com', link:1},
-    {id:'U2023S4O9E2R19I30D38C109T', nome:'Marina', email:'marinarij@gmail.com', link:1},
-    {id:'U2023S4O9E2R19I30D38C109T', nome:'Jóice', email:'jojotto@gmail.com', link:1},
-    {id:'U2023S4O9E2R19I30D38C109T', nome:'Matheus', email:'matthokl@gmail.com', link:1},
-    {id:'U2023S4O9E2R19I30D38C109T', nome:'Karine', email:'karinebr20@gmail.com', link:1},
-    {id:'U2023S4O9E2R19I30D38C109T', nome:'Flávia', email:'flafla2088@gmail.com', link:1},
-];
+import api from "../../../../services/api";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function GroupsUsers() {
+    const [user, setUser] = useState([]);
+
+    const location = useLocation();
+    const urlpath = location.pathname;
+    const id = urlpath.replace("/admin/home/groups/users/", "");
+    
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        api.get(`/v1/group/users/${id}`).then(res => {
+            return setUser(res.data);
+        }).catch(error => {
+            alert(error);
+        });
+    }, []);
+
     return (
         <>
             <Container fluid className='p-2 shadow-sm'>
                 <Accordion>
                     <Accordion.Item eventKey="0">
-                        <Accordion.Header><h4>Contabilidade [Trabalho]</h4></Accordion.Header>
+                        <Accordion.Header><h4>{user[0]?.groupName} [{user[0]?.subject !== undefined ? user[0]?.subject : "Sem Registros"}]</h4></Accordion.Header>
                         <Accordion.Body>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                            minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat. Duis aute irure dolor in
-                            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                            culpa qui officia deserunt mollit anim id est laborum.
+                            {user[0]?.description}
                         </Accordion.Body>
                     </Accordion.Item>
                 </Accordion>
@@ -45,11 +45,11 @@ function GroupsUsers() {
                         </tr>
                     </thead>
                     <tbody>
-                        {dadosTeste.map( (item, index) => {
+                        {user.length > 0 ? user.map( (item, index) => {
                             return (
                                     <tr key={index}>
-                                        <td>{item.id}</td>
-                                        <td>{item.nome}</td>
+                                        <td>{item.idControl}</td>
+                                        <td>{item.firstName} {item.lastName}</td>
                                         <td>{item.email}</td>
                                         <td align='center'>
                                             <Button variant='danger' as={NavLink} to={item.link}>Remover</Button>
@@ -57,7 +57,7 @@ function GroupsUsers() {
                                     </tr>
                                 );
                             }
-                        )}
+                        ): <tr style={{fontFamily: 'Arial Black', fontSize: 14}}><td  colSpan="5">Nenhum registro encontrado!</td></tr>}
                     </tbody>
                 </Table>
             </Container>

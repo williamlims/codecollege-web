@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import InputGroup from 'react-bootstrap/InputGroup'
 import { BsFillEyeSlashFill } from "react-icons/bs";
-import { useLocation, useNavigate }from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import api from "../../../../services/api";
 
 function UserEdit() {
