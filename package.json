@@ -57,8 +57,6 @@
   },
   "react-dotenv": {
     "whitelist": [
-      "VARIAVELDEFINIR",
-      "VARIAVELDEFINIR2",
       "API_URL"
     ]
   }

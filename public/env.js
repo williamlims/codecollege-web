@@ -1,5 +1,3 @@
 window.env = {
-  "VARIAVELDEFINIR": "121345645897",
-  "VARIAVELDEFINIR2": "222222222222",
-  "API_URL": "https://www.codecollege.com/"
+  "API_URL": "http://127.0.0.1:3001"
 };

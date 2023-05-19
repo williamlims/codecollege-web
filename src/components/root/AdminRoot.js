@@ -21,9 +21,15 @@ import { CSSTransition, SwitchTransition } from "react-transition-group";
 import { Outlet, useLocation }from "react-router-dom";
 import "../../styles/style.css";
 import { jsPDF } from "jspdf";
+import api from "../../services/api";
 
-const printUserReport = () => {
+const printUserReport = (user) => {
     const doc = new jsPDF();
+    let counter = 0;
+    let space = 30;
+    let page = 1;
+    let totalpage = user.length;
+
     doc.setFont("times", "bold");
     doc.setFontSize(16);
     doc.text("RELATÓRIO DE USUÁRIOS", 15, 15);
@@ -35,21 +41,34 @@ const printUserReport = () => {
     doc.setFont("times", "normal");
     doc.setFontSize(10);
 
-    for(let i = 30; i<280; i=i+5){ //TESTE apenas 50 linhas e mudar pra proxima pagina
-    doc.text(("U2023S4E11R4I14D21C6T777").substring(0,30), 15, i);
-    doc.text(("  Marcos Eduardo Faria").substring(0,21), 70, i);
-    doc.text(("  marcosfg2895@gmail.com").substring(0,28), 105, i);
-    doc.text("  11/05/2023", 155, i);
+    if(totalpage === 0){
+        doc.text(("Sem registros!").substring(0,30), 15, space);
+        doc.save("user-report.pdf");
     }
-    doc.addPage(1)
-    doc.text("Hello world! 2", 50, 50);
-    doc.addPage(2)
-    doc.text("Hello world! 3", 5000, 50);
+
+    for(counter; counter<totalpage; counter++){ 
+        doc.text((user[counter]?.idControl).substring(0,30), 15, space);
+        doc.text(("  "+user[counter]?.firstName+" "+user[counter]?.lastName).substring(0,21), 70, space);
+        doc.text(("  "+user[counter]?.email).substring(0,28), 105, space);
+        doc.text("  "+user[counter]?.createdAt, 155, space);
+        space = space + 5;
+        if(counter === 50){
+            doc.addPage(page);
+            page = page + 1;
+            space = 30;
+            totalpage = totalpage - 50;
+        }
+    }
     doc.save("user-report.pdf");
 };
 
-const printCourseReport = () => {
+const printCourseReport = (course) => {
     const doc = new jsPDF();
+    let counter = 0;
+    let space = 30;
+    let page = 1;
+    let totalpage = course.length;
+
     doc.setFont("times", "bold");
     doc.setFontSize(16);
     doc.text("RELATÓRIO DE CURSOS", 15, 15);
@@ -61,17 +80,25 @@ const printCourseReport = () => {
     doc.setFont("times", "normal");
     doc.setFontSize(10);
 
-    for(let i = 30; i<280; i=i+5){ //TESTE apenas 50 linhas e mudar pra proxima pagina
-    doc.text(("C2023O4U9R2S10E4I44D78").substring(0,30), 15, i);
-    doc.text(("  Lógica de Programação").substring(0,30), 70, i);
-    doc.text(("  Intermediário").substring(0,28), 120, i);
-    doc.text("  Ciências Exatas e da Terra", 155, i);
+    if(totalpage === 0){
+        doc.text(("Sem registros!").substring(0,30), 15, space);
+        doc.save("course-report.pdf");
     }
-    doc.addPage(1)
-    doc.text("Hello world! 2", 50, 50);
-    doc.addPage(2)
-    doc.text("Hello world! 3", 5000, 50);
-    doc.save("user-report.pdf");
+
+    for(counter; counter<totalpage; counter++) { 
+        doc.text((course[counter]?.idControl).substring(0,30), 15, space);
+        doc.text(("  "+course[counter]?.nameCourse).substring(0,30), 70, space);
+        doc.text(("  "+course[counter]?.level).substring(0,28), 120, space);
+        doc.text("  "+course[counter]?.area, 155, space);
+        space = space + 5;
+        if(counter === 50){
+            doc.addPage(page);
+            page = page + 1;
+            space = 30;
+            totalpage = totalpage - 50;
+        }
+    }
+    doc.save("course-report.pdf");
 };
 
 const verifyTitle = (pathname) => {
@@ -137,10 +164,26 @@ function AdminRoot(props) {
     const { nodeRef } = location.pathname;
     const { toggleSidebar, broken } = useProSidebar();
     const [title, setTitle] = useState("");
+    const [user, setUser] = useState([]);
+    const [course, setCourse] = useState([]);
 
     useEffect(() => {
         setTitle(verifyTitle(location.pathname));
     });
+
+    useEffect(() => {
+        api.get('/v1/users/').then(res => {
+            return setUser(res.data);
+        }).catch(error => {
+            alert(error);
+        });
+
+        api.get('/v1/courses/').then(res => {
+            return setCourse(res.data);
+        }).catch(error => {
+            alert(error);
+        });
+    }, []);
 
     const style = {
         menu: {
@@ -193,8 +236,8 @@ function AdminRoot(props) {
                         <MenuItem rootStyles={style.subMenu} onClick={() => setTitle("Inserir no Grupo")} component={<Link to="/admin/home/groups/insert" />}> Inserir no Grupo </MenuItem>
                     </SubMenu>
                     <SubMenu icon={<BsFiletypePdf />} label="Relatório">
-                        <MenuItem rootStyles={style.subMenu} icon={<BsDownload />} onClick={() => printUserReport()}> Usuários </MenuItem>
-                        <MenuItem rootStyles={style.subMenu} icon={<BsDownload />} onClick={() => printCourseReport()}> Cursos </MenuItem>
+                        <MenuItem rootStyles={style.subMenu} icon={<BsDownload />} onClick={() => printUserReport(user)}> Usuários </MenuItem>
+                        <MenuItem rootStyles={style.subMenu} icon={<BsDownload />} onClick={() => printCourseReport(course)}> Cursos </MenuItem>
                     </SubMenu>
                 </Menu>
             </Sidebar>

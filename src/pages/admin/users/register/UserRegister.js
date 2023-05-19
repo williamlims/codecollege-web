@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import env from "react-dotenv";
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -35,7 +36,7 @@ function UserRegister() {
         let password = document.getElementById("password").value;
         let levelUser = document.getElementById("levelUser").value;
         let googleAccount = false;
-        let photo = "nada";
+        let photo = env.API_URL + "/public/photos/default.png";
 
         api.post('/v1/users/', {
             idControl: idControl,
