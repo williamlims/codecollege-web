@@ -76,7 +76,7 @@ function Home() {
                             <Nav.Link to="/home/library" key="/home/library" as={NavLink}>
                                 <Col className="w-100 p-2 shadow" variant="success" as={Button} style={borderSizeStyle}>
                                     <div>
-                                        <p style={{fontSize:26}}>Bibliotecas <BsFillBookFill /></p>
+                                        <p style={{fontSize:26}}>Biblioteca <BsFillBookFill /></p>
                                         <p style={{fontSize:18}}>Livros ou documentos disponibilizados para consulta</p>
                                     </div>
                                 </Col>
@@ -115,6 +115,7 @@ function Home() {
                     </Row>   
                 </Container>
             </main>
+            <br />
             <Footer />
         </>
     );

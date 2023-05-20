@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import BreadcrumbPath from '../../../../../components/pathNavigation/BreadcrumbPath';
 import NavMain from '../../../../../components/navMain/NavMain';
@@ -9,9 +9,27 @@ import Col from 'react-bootstrap/Col';
 import { NavLink } from 'react-router-dom';
 import TabInfo from '../../../../../components/tab/TabInfo';
 import { useNavigate } from "react-router-dom";
-import ReactPlayer from 'react-player'
+import ReactPlayer from 'react-player';
+import { useLocation } from "react-router-dom";
+import api from "../../../../../services/api";
 
 function Class() {
+    const [classs, setClasss] = useState("");
+
+    const location = useLocation();
+    const urlpath = location.pathname;
+    const getData = urlpath.split("/");
+    const idCourse = getData[3];
+    const idClass = getData[5];
+    
+    useEffect(() => {
+        api.get(`/v1/user/courses/${idCourse}/classes/${idClass}`).then(res => {
+            return setClasss(res.data);
+        }).catch(error => {
+            alert(error);
+        });
+    }, [idCourse, idClass]);
+
     let navigate = useNavigate();
     const path = { 
         element: (
@@ -23,28 +41,17 @@ function Class() {
             </>
         )
     };
-    const style = {
-        playerWrapper: {
-            position: 'relative',
-            paddingTop: '56.25%',
-        },
-        reactPlayer: {
-            position: 'absolute',
-            top: 0,
-            left: 0,
-        }
-    };
     
     return (
         <>
             <NavMain nameUser="Marcos Luiz" messageUser="Assista a aula até ao final para computar no sistema."/>
             <BreadcrumbPath path={path.element}/>
-            <TabInfo info="Curso"/>
+            <TabInfo info={"Aula [ "+classs[0]?.nameClass+" ]"}/>
             <Container style={{height:600}} className='shadow-sm overflow-auto'>
-                <Row className='mt-2 p-2'>
+                <Row className='mt-1 p-2'>
                     <Col sm={12} xs={12} md={12} lg={12} xl={12} style={{height: '500px'}} className='d-flex align-items-center'>
                         <ReactPlayer
-                            url='https://www.youtube.com/watch?v=ysz5S6PUM-U'
+                            url={classs[0]?.linkYoutube}
                             width='100%'
                             height='100%'
                         />

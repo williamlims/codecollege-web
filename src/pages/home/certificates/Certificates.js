@@ -11,7 +11,6 @@ import NavMain from '../../../components/navMain/NavMain';
 import Footer from '../../../components/footer/Footer';
 import Button from 'react-bootstrap/Button';
 import { BsFillCloudArrowDownFill } from "react-icons/bs";
-import Print from './print/Print';
 
 function Certificates() {
     const path = { 

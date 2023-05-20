@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -11,8 +11,21 @@ import Nav from 'react-bootstrap/Nav';
 import { NavLink } from 'react-router-dom';
 import TabInfo from '../../../components/tab/TabInfo';
 import { BsFillFileEarmarkTextFill } from "react-icons/bs";
+import api from "../../../services/api";
 
 function Library() {
+    const [libraries, setLibraries] = useState([]);
+
+    const userIDteste = 'U2023S4E18R4I20D9C22T958'; // pegar essa informação da sessão
+
+    useEffect(() => {
+        api.get(`/v1/user/libraries/user/${userIDteste}`).then(res => {
+            return setLibraries(res.data);
+        }).catch(error => {
+            alert(error);
+        });
+    }, [userIDteste]);
+
     const path = { 
         element: (
             <>
@@ -21,21 +34,7 @@ function Library() {
             </>
         )
     };
-
-    const documento = () => {
-        return (
-            <>
-                <Row className='bg-light shadow-sm m-1 mt-2 p-2 align-self-center'>
-                    <Col className='d-flex justify-content-start mt-1'>
-                        <div style={{fontFamily:'Arial', fontSize:18, alignContent:'center'}}>Documentação do sistema de cadastramento</div>
-                    </Col>
-                    <Col className='d-flex justify-content-end align-self-center'>
-                        <Button size="md" href="https://www.google.com" target='_blank' style={{maxHeight:40}}><BsFillFileEarmarkTextFill /> Ler</Button>
-                    </Col>       
-                </Row>
-            </>
-        )
-    };
+    
     return (
         <>
             <NavMain nameUser="Marcos Luiz" messageUser="Aqui você encontra livros e documentos disponíveis no sistema."/>
@@ -43,7 +42,19 @@ function Library() {
             <TabInfo info="Biblioteca"/>
             <main class="flex-shrink-0">
                 <Container className='mb-5 mt-2 bg-light shadow overflow-auto' style={{height:600}}>
-                    {documento()}
+                    {libraries.length > 0 ? libraries.map( (item, index) => {
+                        return (
+                            <Row className='bg-light shadow-sm m-1 mt-2 p-2 align-self-center' key={index}>
+                                <Col className='d-flex justify-content-start mt-1'>
+                                    <div style={{fontFamily:'Arial', fontSize:18, alignContent:'center'}}>{item.nameDocument}</div>
+                                </Col>
+                                <Col className='d-flex justify-content-end align-self-center'>
+                                    <Button size="md" href={item.filePath} target='_blank' style={{maxHeight:40}}><BsFillFileEarmarkTextFill /> Ler</Button>
+                                </Col>       
+                            </Row>
+                            );
+                        }
+                    ): <tr style={{fontFamily: 'Arial Black', fontSize: 14}}><td  colSpan="5">Nenhum documento encontrado!</td></tr>}
                 </Container>
             </main>
             <Footer />

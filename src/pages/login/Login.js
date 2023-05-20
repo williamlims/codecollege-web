@@ -37,7 +37,6 @@ function Login() {
                     </Button>
 
                     <Form.Group className="mb-3"  id="groupOptions">
-                        <Nav.Link to="/recover-password" key="home" style={{fontSize: 14}} as={NavLink}>Esqueçeu sua senha?</Nav.Link>
                         <Nav.Link to="/register" style={{fontSize: 14, color:'blue'}} key="home" as={NavLink}>Criar novo cadastro.</Nav.Link>
                     </Form.Group>
 

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import BreadcrumbPath from '../../../components/pathNavigation/BreadcrumbPath';
 import NavMain from '../../../components/navMain/NavMain';
@@ -9,10 +9,22 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { NavLink } from 'react-router-dom';
 import TabInfo from '../../../components/tab/TabInfo';
-import user from '../../../assets/userMain.png';
 import Button from 'react-bootstrap/Button';
+import api from "../../../services/api";
 
 function Courses() {
+    const [course, setCourse] = useState([]);
+
+    const userIDteste = 'U2023S4E18R4I9D27C52T948'; // pegar essa informação da sessão
+
+    useEffect(() => {
+        api.get(`/v1/user/courses/${userIDteste}`).then(res => {
+            return setCourse(res.data);
+        }).catch(error => {
+            alert(error);
+        });
+    }, []);
+
     const path = { 
         element: (
             <>
@@ -27,21 +39,22 @@ function Courses() {
             <BreadcrumbPath path={path.element}/>
             <TabInfo info="Cursos"/>
             <Container style={{height:600}} className='shadow-sm overflow-auto'>
-                <Row className='shadow-sm mt-2 p-2'>
-                    <Col sm={3} xs={2} md={2} lg={2} xl={1} className='d-flex align-items-center'>
-                        <img src={user} width="80" height="80" 
-                                style={{borderBlockColor:'black'}} className="shadow-sm d-inline-block align-top" alt="pho" />
-                    </Col>
-                    <Col sm={5} xs={12} md={6} lg={6} xl={6} className='text-break m-2 p-1'>
-                        <span style={{fontFamily:'Arial Black', fontSize: 16}}>Nome Curso</span> < br/> 
-                        <span style={{fontFamily:'Arial', fontSize: 14}}>fdadfb dbdbdhrehe hrheherhe rhreherhrehe herheherher hehr eherhr eherh shdf hdddgf gsdgf dsgfsdgd sfgsd gfdgd fsg khj jh gjhf gdf gd dfg dfdfd fdfdf dfdfd </span>
-                    </Col>
-                    <Col sm={3} xs={4} md={4} lg={3} xl={3} className='m-2 p-1 d-flex align-items-center'>
-                        <Button as={NavLink} to="/home/courses/5" variant="primary">
-                            Entrar no curso
-                        </Button>
-                    </Col>
-                </Row>
+                {course.length > 0 ? course.map( (item, index) => {
+                    return (
+                        <Row className='shadow-sm mt-2 p-2 m-2 bg-white'>
+                            <Col sm={5} xs={12} md={6} lg={6} xl={6} className='text-break m-2 p-1'>
+                                <span style={{fontFamily:'Arial Black', fontSize: 16}}>{item?.nameCourse}</span> < br/> 
+                                <span style={{fontFamily:'Arial', fontSize: 14}}>{item?.description}</span>
+                            </Col>
+                            <Col sm={3} xs={4} md={4} lg={3} xl={3} className='m-2 p-1 d-flex align-items-center'>
+                                <Button as={NavLink} to={"/home/courses/"+item?.idControl} variant="primary">
+                                    Entrar no curso
+                                </Button>
+                            </Col>
+                        </Row>
+                        );
+                    }
+                ): <tr style={{fontFamily: 'Arial Black', fontSize: 14}}><td  colSpan="5">Nenhum curso encontrado!</td></tr>}
             </Container>
             <Footer />
             

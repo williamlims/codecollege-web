@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -11,8 +11,21 @@ import TabInfo from '../../../components/tab/TabInfo';
 import NavMain from '../../../components/navMain/NavMain';
 import Footer from '../../../components/footer/Footer';
 import { BsFillFileEarmarkTextFill } from "react-icons/bs";
+import api from "../../../services/api";
 
 function Tutorials() {
+    const [tutorials, setTutorials] = useState([]);
+
+    const userIDteste = 'U2023S4E18R4I20D9C22T958'; // pegar essa informação da sessão
+
+    useEffect(() => {
+        api.get(`/v1/user/tutorials/user/${userIDteste}`).then(res => {
+            return setTutorials(res.data);
+        }).catch(error => {
+            alert(error);
+        });
+    }, []);
+
     const path = { 
         element: (
             <>
@@ -22,20 +35,6 @@ function Tutorials() {
         )
     };
 
-    const documento = () => {
-        return (
-            <>
-                <Row className='bg-light shadow-sm m-1 mt-2 p-2 align-self-center'>
-                    <Col className='d-flex justify-content-start mt-1'>
-                        <div style={{fontFamily:'Arial', fontSize:18, alignContent:'center'}}>Documentação do sistema de cadastramento</div>
-                    </Col>
-                    <Col className='d-flex justify-content-end align-self-center'>
-                        <Button size="md" href="https://www.google.com" target='_blank' style={{maxHeight:40}}><BsFillFileEarmarkTextFill /> Visualizar</Button>
-                    </Col>       
-                </Row>
-            </>
-        )
-    };
     return (
         <>
             <NavMain nameUser="Marcos Luiz" messageUser="Explore os tutoriais disponíveis."/>
@@ -43,7 +42,21 @@ function Tutorials() {
             <TabInfo info="Tutoriais"/>
             <main class="flex-shrink-0">
                 <Container className='mb-5 mt-2 bg-light shadow overflow-auto' style={{height:600}}>
-                    {documento()}
+                    {tutorials.length > 0 ? tutorials.map( (item, index) => {
+                        return (
+                            <>
+                                <Row className='bg-light shadow-sm m-1 mt-2 p-2 align-self-center' key={index}>
+                                    <Col className='d-flex justify-content-start mt-1'>
+                                        <div style={{fontFamily:'Arial', fontSize:18, alignContent:'center'}}>{item.nameTutorial}</div>
+                                    </Col>
+                                    <Col className='d-flex justify-content-end align-self-center'>
+                                        <Button size="md" href={item.filePath} target='_blank' style={{maxHeight:40}}><BsFillFileEarmarkTextFill /> Visualizar</Button>
+                                    </Col>       
+                                </Row>
+                            </>
+                        );   
+                    }
+                ): <tr style={{fontFamily: 'Arial Black', fontSize: 14}}><td  colSpan="5">Nenhum tutorial encontrado!</td></tr>}
                 </Container>
             </main>
             <Footer />
