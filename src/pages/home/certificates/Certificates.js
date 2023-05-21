@@ -42,7 +42,7 @@ function Certificates() {
 
     return (
         <>
-            <NavMain nameUser="Marcos Luiz" messageUser="Baixe os certificados dos seus cursos concluídos."/>
+            <NavMain messageUser="Baixe os certificados dos seus cursos concluídos."/>
             <BreadcrumbPath path={path.element}/>
             <TabInfo info="Certificados"/>
             <main class="flex-shrink-0">

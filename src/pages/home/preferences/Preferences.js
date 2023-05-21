@@ -32,7 +32,7 @@ function Preferences() {
 
     return (
         <>
-            <NavMain nameUser="Marcos Luiz" messageUser="Efetue alterações em sua conta."/>
+            <NavMain messageUser="Efetue alterações em sua conta."/>
             <BreadcrumbPath path={path.element}/>
             <TabInfo info="Preferências"/>
             <main class="flex-shrink-0">

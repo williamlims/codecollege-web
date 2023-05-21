@@ -62,7 +62,7 @@ function Dashboard() {
                 label: "Estatísticas do Sistema",
                 backgroundColor: "rgb(0, 0, 0)",
                 borderColor: "rgb(0, 0, 0)",
-                data: [users, courses, libraries, tutorials, groups, (users+courses+libraries+tutorials+groups)*2],
+                data: [users, courses, libraries, tutorials, groups, (users+courses+libraries+tutorials+groups)],
             },
         ],
     };

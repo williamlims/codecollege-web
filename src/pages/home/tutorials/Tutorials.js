@@ -37,7 +37,7 @@ function Tutorials() {
 
     return (
         <>
-            <NavMain nameUser="Marcos Luiz" messageUser="Explore os tutoriais disponíveis."/>
+            <NavMain messageUser="Explore os tutoriais disponíveis."/>
             <BreadcrumbPath path={path.element}/>
             <TabInfo info="Tutoriais"/>
             <main class="flex-shrink-0">

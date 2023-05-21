@@ -40,7 +40,7 @@ function ClassFree() {
     
     return (
         <>
-            <NavMain nameUser="Marcos Luiz" messageUser="Assista a aula até ao final para computar no sistema."/>
+            <NavMain messageUser="Assista a aula até ao final para computar no sistema."/>
             <BreadcrumbPath path={path.element}/>
             <TabInfo info={"Aula livre [ "+classes[0]?.nameClass+" ]"}/>
             <Container style={{height:600}} className='shadow-sm overflow-auto'>

@@ -23,7 +23,7 @@ function Courses() {
         }).catch(error => {
             alert(error);
         });
-    }, []);
+    }, [userIDteste]);
 
     const path = { 
         element: (
@@ -35,7 +35,7 @@ function Courses() {
     };
     return (
         <>
-            <NavMain nameUser="Marcos Luiz" messageUser="Cursos disponíveis na plataforma."/>
+            <NavMain messageUser="Cursos disponíveis na plataforma."/>
             <BreadcrumbPath path={path.element}/>
             <TabInfo info="Cursos"/>
             <Container style={{height:600}} className='shadow-sm overflow-auto'>

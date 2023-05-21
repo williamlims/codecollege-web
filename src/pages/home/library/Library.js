@@ -37,7 +37,7 @@ function Library() {
     
     return (
         <>
-            <NavMain nameUser="Marcos Luiz" messageUser="Aqui você encontra livros e documentos disponíveis no sistema."/>
+            <NavMain messageUser="Aqui você encontra livros e documentos disponíveis no sistema."/>
             <BreadcrumbPath path={path.element}/>
             <TabInfo info="Biblioteca"/>
             <main class="flex-shrink-0">

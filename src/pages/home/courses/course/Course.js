@@ -62,7 +62,7 @@ function Course() {
 
     return (
         <>
-            <NavMain nameUser="Marcos Luiz" messageUser="Aqui você encontra o conteúdo do curso."/>
+            <NavMain messageUser="Aqui você encontra o conteúdo do curso."/>
             <BreadcrumbPath path={path.element}/>
             <TabInfo info={"Curso [ "+classes[0]?.nameCourse+" ]"}/>
             <Container style={{height:600}} className='shadow-sm overflow-auto bg-light'>
