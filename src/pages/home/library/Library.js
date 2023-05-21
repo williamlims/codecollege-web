@@ -16,15 +16,15 @@ import api from "../../../services/api";
 function Library() {
     const [libraries, setLibraries] = useState([]);
 
-    const userIDteste = 'U2023S4E18R4I20D9C22T958'; // pegar essa informação da sessão
+    const idUser = sessionStorage.getItem("idUser");
 
     useEffect(() => {
-        api.get(`/v1/user/libraries/user/${userIDteste}`).then(res => {
+        api.get(`/v1/user/libraries/user/${idUser}`).then(res => {
             return setLibraries(res.data);
         }).catch(error => {
             alert(error);
         });
-    }, [userIDteste]);
+    }, [idUser]);
 
     const path = { 
         element: (

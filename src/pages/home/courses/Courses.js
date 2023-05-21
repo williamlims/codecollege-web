@@ -15,15 +15,15 @@ import api from "../../../services/api";
 function Courses() {
     const [course, setCourse] = useState([]);
 
-    const userIDteste = 'U2023S4E18R4I9D27C52T948'; // pegar essa informação da sessão
+    const idUser = sessionStorage.getItem("idUser");
 
     useEffect(() => {
-        api.get(`/v1/user/courses/${userIDteste}`).then(res => {
+        api.get(`/v1/user/courses/${idUser}`).then(res => {
             return setCourse(res.data);
         }).catch(error => {
             alert(error);
         });
-    }, [userIDteste]);
+    }, [idUser]);
 
     const path = { 
         element: (

@@ -64,7 +64,7 @@ function Course() {
         <>
             <NavMain messageUser="Aqui você encontra o conteúdo do curso."/>
             <BreadcrumbPath path={path.element}/>
-            <TabInfo info={"Curso [ "+classes[0]?.nameCourse+" ]"}/>
+            <TabInfo info={"Curso [ "+(classes[0]?.nameCourse === undefined ? "Nenhum conteúdo foi registrado ainda" : classes[0]?.nameCourse)+" ]"}/>
             <Container style={{height:600}} className='shadow-sm overflow-auto bg-light'>
                 
                 <Row className='mt-0 p-2 text-white-50 bg-secondary' >

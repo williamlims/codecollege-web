@@ -1,11 +1,40 @@
+import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Col from 'react-bootstrap/Col';
 import logo from '../../assets/logo.svg';
-import user from '../../assets/userMain.png';
+import { useNavigate } from "react-router-dom";
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 function NavMain(props) {
+    let navigate = useNavigate();
+    const [userID, setUserID] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [levelUser, setLevelUser] = useState('');
+    const [deleteShow, setDeleteShow] = useState(false);
+    const handleClose = () => setDeleteShow(false);
+    const handleShow = () => setDeleteShow(true);
 
+    const logoutUser = () => {
+        sessionStorage.clear();
+        navigate('/login');
+    }
+
+    useEffect(() => {
+        if(sessionStorage.getItem("idUser") === null){
+            navigate('/login');
+        } else {
+            setUserID(sessionStorage.getItem("idUser"));
+            setFirstName(sessionStorage.getItem("firstName"));
+            setLastName(sessionStorage.getItem("lastName"));
+            setLevelUser(sessionStorage.getItem("levelUser"));
+        }
+    }, []);
+        
     const getYearFunc = () => {
         const date = new Date();
         const year = date.getFullYear();
@@ -56,14 +85,44 @@ function NavMain(props) {
         <>
             <Navbar expand="md sm" as={Col} bg="light" style={{margin:0}} >
                 <Container>
+                    <Modal
+                        show={deleteShow}
+                        onHide={handleClose}
+                        backdrop="static"
+                        keyboard={false}
+                    >
+                        <Modal.Header closeButton>
+                        <Modal.Title>Confirmação</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                        Você tem certeza que deseja sair da plataforma?
+                        </Modal.Body>
+                        <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            não
+                        </Button>
+                        <Button variant="danger" onClick={() => logoutUser()}>Sim</Button>
+                        </Modal.Footer>
+                    </Modal>
                     <Navbar.Brand href="#">
                         <img src={logo} width="30" height="30" className="d-inline-block align-top" alt="Logo" />
                         <Navbar.Text className='h5 p-1' style={{fontFamily:'Rockwell', color:'black'}}>Code College</Navbar.Text>
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="user-config"/>
                     <Navbar.Collapse id="user-config" className="justify-content-end">
-                        <Navbar.Text className='h5 m-1' style={{fontFamily:'Rockwell', color:'black'}}>
-                            {props.nameUser} <a href="#l"><img src={user} width="35" height="35" className="rounded-circle" alt='Pho' /></a>
+                        <Navbar.Text className='m-1' style={{fontFamily:'Rockwell', color:'black'}}>
+                            <DropdownButton
+                                    key='start'
+                                    id='dropdown'
+                                    drop='start'
+                                    variant="gray"
+                                    title={` ${firstName} ${lastName}`}
+                                    >
+                                    <Dropdown.Item eventKey="1" href="/home/courses">Cursos</Dropdown.Item>
+                                    <Dropdown.Item eventKey="2" href="/home/certificates">Certificados</Dropdown.Item>
+                                    <Dropdown.Divider />
+                                    <Dropdown.Item eventKey="3" onClick={() => handleShow()}>Sair</Dropdown.Item>
+                                </DropdownButton>
                         </Navbar.Text>
                     </Navbar.Collapse>
                 </Container>
@@ -72,7 +131,7 @@ function NavMain(props) {
                 <Container>
                     <Navbar.Text as={Col}  className='h6 mt-1' style={{fontFamily:'Arial', color:'white'}}>
                         {getWeekDayFunc()}, {getDayFunc()} de {getMonthFunc()} de {getYearFunc()}<br />
-                        <span className='h5'>Olá, {props.nameUser}! {props.messageUser}</span>
+                        <span className='h5'>Olá, {firstName}! {props.messageUser}</span>
                     </Navbar.Text>
                 </Container>
             </Navbar>

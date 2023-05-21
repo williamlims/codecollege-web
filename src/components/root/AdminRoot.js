@@ -18,7 +18,8 @@ import { BsFillPersonFill,
          BsDownload
 } from "react-icons/bs";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
-import { Outlet, useLocation }from "react-router-dom";
+import { Outlet, useLocation, useNavigate }from "react-router-dom";
+import Modal from 'react-bootstrap/Modal';
 import "../../styles/style.css";
 import { jsPDF } from "jspdf";
 import api from "../../services/api";
@@ -160,6 +161,7 @@ const verifyTitle = (pathname) => {
 };
 
 function AdminRoot(props) {
+    let navigate = useNavigate();
     const location = useLocation();
     const { nodeRef } = location.pathname;
     const { toggleSidebar, broken } = useProSidebar();
@@ -167,9 +169,33 @@ function AdminRoot(props) {
     const [user, setUser] = useState([]);
     const [course, setCourse] = useState([]);
 
+    const [userID, setUserID] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [levelUser, setLevelUser] = useState('');
+    const [deleteShow, setDeleteShow] = useState(false);
+    const handleClose = () => setDeleteShow(false);
+    const handleShow = () => setDeleteShow(true);
+
     useEffect(() => {
         setTitle(verifyTitle(location.pathname));
-    });
+    }, []);
+
+    const logoutAdmin = () => {
+        sessionStorage.clear();
+        navigate('/admin');
+    }
+
+    useEffect(() => {
+        if(sessionStorage.getItem("idUser") === null && sessionStorage.getItem("idUser") !== 2){
+            navigate('/admin');
+        } else {
+            setUserID(sessionStorage.getItem("idUser"));
+            setFirstName(sessionStorage.getItem("firstName"));
+            setLastName(sessionStorage.getItem("lastName"));
+            setLevelUser(sessionStorage.getItem("levelUser"));
+        }
+    }, []);
 
     useEffect(() => {
         api.get('/v1/users/').then(res => {
@@ -260,18 +286,37 @@ function AdminRoot(props) {
                                     id='dropdown'
                                     drop='start'
                                     variant="gray"
-                                    title={` ${'Mark Antony'}`}
+                                    title={` ${firstName} ${lastName}`}
                                     >
                                     <Dropdown.Item eventKey="1" href="/home">Plataforma</Dropdown.Item>
                                     <Dropdown.Item eventKey="2" href="/admin/home/users/register">Criar curso</Dropdown.Item>
                                     <Dropdown.Divider />
-                                    <Dropdown.Item eventKey="3" onClick={() => {alert("mudar")}}>Sair</Dropdown.Item>
+                                    <Dropdown.Item eventKey="3" onClick={() => handleShow()}>Sair</Dropdown.Item>
                                 </DropdownButton>
                             </Nav>
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>
                 <Container fluid >
+                    <Modal
+                        show={deleteShow}
+                        onHide={handleClose}
+                        backdrop="static"
+                        keyboard={false}
+                    >
+                        <Modal.Header closeButton>
+                        <Modal.Title>Confirmação</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                        Você tem certeza que deseja sair da plataforma?
+                        </Modal.Body>
+                        <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            não
+                        </Button>
+                        <Button variant="danger" onClick={() => logoutAdmin()}>Sim</Button>
+                        </Modal.Footer>
+                    </Modal>
                     <SwitchTransition>
                         <CSSTransition nodeRef={nodeRef} key={location.pathname} timeout={600} classNames="page" unmountOnExit>
                             <div className="page">

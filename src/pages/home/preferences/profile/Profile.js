@@ -19,10 +19,10 @@ function Profile() {
     const [cmShow, setCmShow] = useState(false);
     const [message, setMessage] = useState("");
 
-    const userIDteste = 'U2023S4E18R4I20D9C22T958'; // pegar essa informação da sessão
+    const idUser = sessionStorage.getItem("idUser");
 
     useEffect(() => {
-        api.get(`/v1/users/${userIDteste}`).then(res => {
+        api.get(`/v1/users/${idUser}`).then(res => {
             document.getElementById("firstName").value = res.data.firstName;
             document.getElementById("lastName").value = res.data.lastName;
             document.getElementById("birthday").value = res.data.birthday.substring(0, 10);
@@ -32,10 +32,10 @@ function Profile() {
         }).catch(error => {
             alert(error);
         });
-    }, [userIDteste]);
+    }, [idUser]);
 
     const updateUser = () => {
-        api.put(`/v1/users/${userIDteste}`, {
+        api.put(`/v1/users/${idUser}`, {
             firstName: document.getElementById("firstName").value,
             lastName: document.getElementById("lastName").value,
             email: document.getElementById("email").value,

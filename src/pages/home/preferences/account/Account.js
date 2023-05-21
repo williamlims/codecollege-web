@@ -20,18 +20,18 @@ function Account() {
     const handleClose = () => setDeleteShow(false);
     const handleShow = () => setDeleteShow(true);
 
-    const userIDteste = 'U2023S4E18R4I20D9C22T958'; // pegar essa informação da sessão
+    const idUser = sessionStorage.getItem("idUser");
 
     useEffect(() => {
-        api.get(`/v1/users/${userIDteste}`).then(res => {
+        api.get(`/v1/users/${idUser}`).then(res => {
             return setUser(res.data);
         }).catch(error => {
             alert(error);
         });
-    }, [userIDteste]);
+    }, [idUser]);
 
     const deleteUser = () => {
-        api.delete(`/v1/users/${userIDteste}`).then(res => {
+        api.delete(`/v1/users/${idUser}`).then(res => {
             setDeleteShow(false);
             navigate('/login');
         }).catch(error => {

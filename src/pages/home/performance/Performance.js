@@ -29,39 +29,39 @@ function Performance() {
         )
     };
 
-    const userIDteste = 'U2023S4E18R4I9D27C52T948'; // pegar essa informação da sessão
+    const idUser = sessionStorage.getItem("idUser");
 
     useEffect(() => {
-        api.get(`/v1/user/courses/${userIDteste}`).then(res => {
+        api.get(`/v1/user/courses/${idUser}`).then(res => {
             setCourses(res.data);
         }).catch(error => {
             return error;
         });
 
-        api.get(`/v1/user/tutorials/user/${userIDteste}`).then(res => {
+        api.get(`/v1/user/tutorials/user/${idUser}`).then(res => {
             setTutorials(res.data.length);
         }).catch(error => {
             return error;
         });
 
-        api.get(`/v1/user/classes/user/${userIDteste}`).then(res => {
+        api.get(`/v1/user/classes/user/${idUser}`).then(res => {
             setClasses(res.data.length);
         }).catch(error => {
             return error;
         });
 
-        api.get(`/v1/user/libraries/user/${userIDteste}`).then(res => {
+        api.get(`/v1/user/libraries/user/${idUser}`).then(res => {
             setDocuments(res.data.length);
         }).catch(error => {
             return error;
         });
 
-        api.get(`/v1/user/certificates/user/${userIDteste}`).then(res => {
+        api.get(`/v1/user/certificates/user/${idUser}`).then(res => {
             setCertificates(res.data.length);
         }).catch(error => {
             return error;
         });
-    }, [userIDteste]);
+    }, [idUser]);
 
     const labels = ["Cursos", "Tutoriais", "Aulas", "Documentos", "Certificados"];
     const data = {
@@ -71,7 +71,7 @@ function Performance() {
                 label: "Disponibilidades x Execução",
                 backgroundColor: "rgb(0, 0, 0)",
                 borderColor: "rgb(0, 0, 0)",
-                data: [courses, tutorials, classes, documents, certificates, (courses+tutorials+classes+documents+certificates)*2],
+                data: [courses, tutorials, classes, documents, certificates, 100],
             },
         ],
     };

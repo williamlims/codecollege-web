@@ -69,7 +69,7 @@ function App() {
           <Route path="home/classes/:id" element={<ClassFree />} />
           <Route path="home/library" element={<Library />} />
           <Route path="home/certificates" element={<Certificates />} />
-          <Route path="home/certificates/print/:id" element={<Print />} />
+          <Route path="home/certificates/print/:idc/:idu" element={<Print />} />
           <Route path="home/performance" element={<Performance />} />
           <Route path="home/preferences" element={<Preferences />} />
           <Route path="home/preferences/account" element={<Account />} />

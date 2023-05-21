@@ -16,15 +16,15 @@ import api from "../../../services/api";
 function Tutorials() {
     const [tutorials, setTutorials] = useState([]);
 
-    const userIDteste = 'U2023S4E18R4I20D9C22T958'; // pegar essa informação da sessão
+    const idUser = sessionStorage.getItem("idUser");
 
     useEffect(() => {
-        api.get(`/v1/user/tutorials/user/${userIDteste}`).then(res => {
+        api.get(`/v1/user/tutorials/user/${idUser}`).then(res => {
             return setTutorials(res.data);
         }).catch(error => {
             alert(error);
         });
-    }, []);
+    }, [idUser]);
 
     const path = { 
         element: (
