@@ -187,9 +187,9 @@ function AdminRoot(props) {
     }
 
     useEffect(() => {
-        if(sessionStorage.getItem("idUser") === null && sessionStorage.getItem("idUser") !== 2){
+        if(sessionStorage.getItem("idUser") === null){
             navigate('/admin');
-        } else {
+        }  else {
             setUserID(sessionStorage.getItem("idUser"));
             setFirstName(sessionStorage.getItem("firstName"));
             setLastName(sessionStorage.getItem("lastName"));

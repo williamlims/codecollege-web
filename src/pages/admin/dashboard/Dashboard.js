@@ -67,15 +67,15 @@ function Dashboard() {
         ],
     };
 
-    const labels2 = ["Hoje", "Ontem", "Documentos", "Tutoriais", "Grupos"];
+    const labels2 = ["Conteúdo disponibilizado", "Usuários registrados"];
     const data2 = {
         labels: labels2,
         datasets: [
             {
-                label: "Núero de Acessos",
+                label: "Conteúdo x Usuários",
                 backgroundColor: "rgb(0, 0, 0)",
                 borderColor: "rgb(0, 0, 0)",
-                data: [users, courses, libraries, tutorials, groups, (users+courses+libraries+tutorials+groups)*10],
+                data: [(courses+libraries+tutorials), users],
             },
         ],
     };
