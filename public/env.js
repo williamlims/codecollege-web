@@ -1,3 +1,3 @@
 window.env = {
-  "API_URL": "http://127.0.0.1:3001"
+  "API_URL": "https://ec2-18-230-78-112.sa-east-1.compute.amazonaws.com:3001"
 };
